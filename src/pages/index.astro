@@ -1,7 +1,7 @@
 ---
 // src/pages/index.astro
 import MainLayout from '../layouts/MainLayout.astro';
-import MermaidScene from '../components/MermaidScene.astro';
+import CyberPrismHero from '../components/CyberPrismHero.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import BlogCard from '../components/BlogCard.astro';
 import PrismCard from '../components/PrismCard.astro';
@@ -13,13 +13,14 @@ const latestPosts = allPosts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
-// Featured projects list
+// Featured projects list with rich showcase illustrations
 const featuredProjects = [
   {
     title: 'AQUA PRISM Portfolio',
     description: 'Nền tảng portfolio cá nhân phong cách thủy cung neon tương lai với kiến trúc Jamstack tĩnh tốc độ cao.',
     category: 'Frontend',
     tags: ['Astro', 'TypeScript', 'CSS Glassmorphism', 'SVG Animation'],
+    image: '/images/projects/aqua-prism.svg',
     problem: 'Tạo dấu ấn cá nhân khác biệt so với các mẫu CV lập trình viên thông thường.',
     role: 'UI/UX Design, Creative Frontend Architecture.',
     demoUrl: 'https://bangkv22.github.io',
@@ -27,9 +28,10 @@ const featuredProjects = [
   },
   {
     title: 'Ocean Data Analytics Hub',
-    description: 'Hệ thống quản lý và trực quan hóa dữ liệu đo đạc thủy văn ngầm ứng dụng biểu đồ tương tác.',
+    description: 'Hệ thống quản lý và trực quan hóa dữ liệu đo đạc thủy văn ngầm ứng dụng biểu đồ tương tác thời gian thực.',
     category: 'Fullstack',
     tags: ['Node.js', 'Express', 'MySQL', 'Chart.js'],
+    image: '/images/projects/ocean-analytics.svg',
     problem: 'Xử lý chuỗi thời gian dữ liệu cảm biến lớn với độ trễ thấp.',
     role: 'Xây dựng RESTful API và thiết kế lược đồ Database MySQL.',
     demoUrl: '#',
@@ -40,6 +42,7 @@ const featuredProjects = [
     description: 'Ứng dụng quản lý tiến độ đồ án nhóm theo mô hình Agile/Kanban cho sinh viên công nghệ thông tin.',
     category: 'Backend',
     tags: ['JavaScript', 'PHP / ASP.NET', 'SQL Server'],
+    image: '/images/projects/task-management.svg',
     problem: 'Tối ưu phân bổ công việc và theo dõi hạn nộp đồ án tự động.',
     role: 'Phát triển module phân quyền xác thực và cơ sở dữ liệu quan hệ.',
     demoUrl: '#',
@@ -55,7 +58,7 @@ const stats = [
 ];
 ---
 
-<MainLayout title="AQUA PRISM — Neon Ocean Portfolio | Bang K.V.">
+<MainLayout title="AQUA PRISM — Neon Ocean Portfolio | VO KHANH BANG">
   <!-- HERO SECTION -->
   <section class="hero-section">
     <div class="container hero-container">
@@ -65,7 +68,7 @@ const stats = [
         </div>
 
         <h1 class="hero-title">
-          Hi, I'm <span class="gradient-text">Bang K.V.</span>
+          Hi, I'm <span class="gradient-text">VO KHANH BANG</span>
         </h1>
 
         <div class="hero-role">
@@ -103,9 +106,9 @@ const stats = [
         </div>
       </div>
 
-      <!-- Hero Visual: Neon Mermaid Scene -->
+      <!-- Hero Visual: Cyber Hologram & Terminal Showcase (No Mermaid) -->
       <div class="hero-visual">
-        <MermaidScene />
+        <CyberPrismHero />
       </div>
     </div>
 

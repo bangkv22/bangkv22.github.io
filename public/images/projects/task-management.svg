@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480">
+  <defs>
+    <linearGradient id="tmBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#041221" />
+      <stop offset="50%" stop-color="#0a1a38" />
+      <stop offset="100%" stop-color="#190a30" />
+    </linearGradient>
+
+    <linearGradient id="tmGradPurple" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9333ea" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+
+    <linearGradient id="tmGradCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#00f5ff" />
+    </linearGradient>
+
+    <linearGradient id="tmGradAmber" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ea580c" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+
+    <radialGradient id="tmGlow" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.35" />
+      <stop offset="60%" stop-color="#00f5ff" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="transparent" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="800" height="480" fill="url(#tmBg)" />
+  <circle cx="400" cy="200" r="280" fill="url(#tmGlow)" />
+
+  <!-- App Window Container -->
+  <rect x="50" y="40" width="700" height="400" rx="16" fill="rgba(6, 20, 38, 0.8)" stroke="rgba(168, 85, 247, 0.35)" stroke-width="1.5" />
+
+  <!-- Window Header -->
+  <rect x="50" y="40" width="700" height="44" rx="16" fill="rgba(3, 13, 26, 0.9)" />
+  <rect x="50" y="70" width="700" height="14" fill="rgba(3, 13, 26, 0.9)" />
+  <line x1="50" y1="84" x2="750" y2="84" stroke="rgba(168, 85, 247, 0.2)" stroke-width="1" />
+
+  <circle cx="78" cy="62" r="6" fill="#ff5f56" />
+  <circle cx="98" cy="62" r="6" fill="#ffbd2e" />
+  <circle cx="118" cy="62" r="6" fill="#27c93f" />
+
+  <text x="146" y="66" font-family="'Outfit', sans-serif" font-size="13" font-weight="700" fill="#eafbff">
+    AGILE TEAM KANBAN WORKSPACE <tspan fill="#c084fc" font-size="11">[SPRINT #14 • ACTIVE]</tspan>
+  </text>
+
+  <!-- Sprint Progress Banner -->
+  <g transform="translate(75, 100)">
+    <rect width="650" height="36" rx="8" fill="rgba(2, 10, 20, 0.7)" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1" />
+    <text x="16" y="23" font-family="'Outfit', sans-serif" font-size="11" font-weight="700" fill="#00f5ff">SPRINT PROGRESS: 82%</text>
+    
+    <rect x="180" y="13" width="340" height="10" rx="5" fill="rgba(255, 255, 255, 0.08)" />
+    <rect x="180" y="13" width="280" height="10" rx="5" fill="url(#tmGradCyan)" />
+    
+    <text x="540" y="23" font-family="'JetBrains Mono', monospace" font-size="11" fill="#4ade80">24/28 Done</text>
+  </g>
+
+  <!-- Kanban Column 1: TODO -->
+  <g transform="translate(75, 150)">
+    <rect width="200" height="265" rx="10" fill="rgba(2, 10, 20, 0.7)" stroke="rgba(245, 158, 11, 0.3)" stroke-width="1" />
+    <rect x="0" y="0" width="200" height="34" rx="10" fill="rgba(245, 158, 11, 0.15)" />
+    <circle cx="18" cy="17" r="5" fill="#f59e0b" />
+    <text x="32" y="22" font-family="'Outfit', sans-serif" font-size="12" font-weight="700" fill="#f59e0b">TO DO (2)</text>
+
+    <!-- Card 1 -->
+    <g transform="translate(12, 46)">
+      <rect width="176" height="85" rx="8" fill="rgba(8, 25, 46, 0.85)" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1" />
+      <rect x="10" y="10" width="48" height="16" rx="4" fill="rgba(245, 158, 11, 0.2)" />
+      <text x="15" y="22" font-family="'Outfit', sans-serif" font-size="9" font-weight="700" fill="#f59e0b">DOCS</text>
+      <text x="10" y="44" font-family="'Outfit', sans-serif" font-size="11" font-weight="600" fill="#eafbff">Update API Swagger</text>
+      <text x="10" y="60" font-family="'Outfit', sans-serif" font-size="9" fill="#9ab8c8">Spec v2.1 endpoints</text>
+      <circle cx="154" cy="68" r="9" fill="#3b82f6" />
+      <text x="154" y="72" font-family="'Outfit', sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">KB</text>
+    </g>
+
+    <!-- Card 2 -->
+    <g transform="translate(12, 142)">
+      <rect width="176" height="85" rx="8" fill="rgba(8, 25, 46, 0.85)" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1" />
+      <rect x="10" y="10" width="56" height="16" rx="4" fill="rgba(239, 68, 68, 0.2)" />
+      <text x="15" y="22" font-family="'Outfit', sans-serif" font-size="9" font-weight="700" fill="#ef4444">URGENT</text>
+      <text x="10" y="44" font-family="'Outfit', sans-serif" font-size="11" font-weight="600" fill="#eafbff">Fix JWT Refresh Flow</text>
+      <text x="10" y="60" font-family="'Outfit', sans-serif" font-size="9" fill="#9ab8c8">Handle token expiration</text>
+      <circle cx="154" cy="68" r="9" fill="#a855f7" />
+      <text x="154" y="72" font-family="'Outfit', sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">AL</text>
+    </g>
+  </g>
+
+  <!-- Kanban Column 2: IN PROGRESS -->
+  <g transform="translate(300, 150)">
+    <rect width="200" height="265" rx="10" fill="rgba(2, 10, 20, 0.7)" stroke="rgba(0, 245, 255, 0.3)" stroke-width="1" />
+    <rect x="0" y="0" width="200" height="34" rx="10" fill="rgba(0, 245, 255, 0.15)" />
+    <circle cx="18" cy="17" r="5" fill="#00f5ff" />
+    <text x="32" y="22" font-family="'Outfit', sans-serif" font-size="12" font-weight="700" fill="#00f5ff">IN PROGRESS (2)</text>
+
+    <!-- Card 1 -->
+    <g transform="translate(12, 46)">
+      <rect width="176" height="95" rx="8" fill="rgba(8, 25, 46, 0.85)" stroke="rgba(0, 245, 255, 0.3)" stroke-width="1" />
+      <rect x="10" y="10" width="60" height="16" rx="4" fill="rgba(0, 245, 255, 0.2)" />
+      <text x="15" y="22" font-family="'Outfit', sans-serif" font-size="9" font-weight="700" fill="#00f5ff">BACKEND</text>
+      <text x="10" y="44" font-family="'Outfit', sans-serif" font-size="11" font-weight="600" fill="#eafbff">RBAC Role Permissions</text>
+      <text x="10" y="60" font-family="'Outfit', sans-serif" font-size="9" fill="#9ab8c8">Dynamic middleware</text>
+      
+      <!-- Progress Bar inside Card -->
+      <rect x="10" y="72" width="120" height="6" rx="3" fill="rgba(255, 255, 255, 0.1)" />
+      <rect x="10" y="72" width="85" height="6" rx="3" fill="url(#tmGradCyan)" />
+      <circle cx="154" cy="74" r="9" fill="#ec4899" />
+      <text x="154" y="78" font-family="'Outfit', sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">VB</text>
+    </g>
+
+    <!-- Card 2 -->
+    <g transform="translate(12, 152)">
+      <rect width="176" height="85" rx="8" fill="rgba(8, 25, 46, 0.85)" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1" />
+      <rect x="10" y="10" width="64" height="16" rx="4" fill="rgba(168, 85, 247, 0.2)" />
+      <text x="15" y="22" font-family="'Outfit', sans-serif" font-size="9" font-weight="700" fill="#c084fc">DATABASE</text>
+      <text x="10" y="44" font-family="'Outfit', sans-serif" font-size="11" font-weight="600" fill="#eafbff">Audit Log Triggers</text>
+      <text x="10" y="60" font-family="'Outfit', sans-serif" font-size="9" fill="#9ab8c8">Store user event trace</text>
+      <circle cx="154" cy="68" r="9" fill="#14b8a6" />
+      <text x="154" y="72" font-family="'Outfit', sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">TX</text>
+    </g>
+  </g>
+
+  <!-- Kanban Column 3: DONE -->
+  <g transform="translate(525, 150)">
+    <rect width="200" height="265" rx="10" fill="rgba(2, 10, 20, 0.7)" stroke="rgba(34, 197, 94, 0.3)" stroke-width="1" />
+    <rect x="0" y="0" width="200" height="34" rx="10" fill="rgba(34, 197, 94, 0.15)" />
+    <circle cx="18" cy="17" r="5" fill="#22c55e" />
+    <text x="32" y="22" font-family="'Outfit', sans-serif" font-size="12" font-weight="700" fill="#22c55e">COMPLETED (4)</text>
+
+    <!-- Done Card -->
+    <g transform="translate(12, 46)">
+      <rect width="176" height="85" rx="8" fill="rgba(8, 25, 46, 0.85)" stroke="rgba(34, 197, 94, 0.3)" stroke-width="1" />
+      <rect x="10" y="10" width="48" height="16" rx="4" fill="rgba(34, 197, 94, 0.2)" />
+      <text x="15" y="22" font-family="'Outfit', sans-serif" font-size="9" font-weight="700" fill="#22c55e">✓ DONE</text>
+      <text x="10" y="44" font-family="'Outfit', sans-serif" font-size="11" font-weight="600" fill="#eafbff">Database ERD Design</text>
+      <text x="10" y="60" font-family="'Outfit', sans-serif" font-size="9" fill="#9ab8c8">Normalized 3NF</text>
+      <circle cx="154" cy="68" r="9" fill="#f59e0b" />
+      <text x="154" y="72" font-family="'Outfit', sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">KB</text>
+    </g>
+
+    <!-- Done Card 2 -->
+    <g transform="translate(12, 142)">
+      <rect width="176" height="85" rx="8" fill="rgba(8, 25, 46, 0.85)" stroke="rgba(34, 197, 94, 0.3)" stroke-width="1" />
+      <rect x="10" y="10" width="48" height="16" rx="4" fill="rgba(34, 197, 94, 0.2)" />
+      <text x="15" y="22" font-family="'Outfit', sans-serif" font-size="9" font-weight="700" fill="#22c55e">✓ DONE</text>
+      <text x="10" y="44" font-family="'Outfit', sans-serif" font-size="11" font-weight="600" fill="#eafbff">Auth Controller &amp; Unit</text>
+      <text x="10" y="60" font-family="'Outfit', sans-serif" font-size="9" fill="#9ab8c8">100% test pass</text>
+      <circle cx="154" cy="68" r="9" fill="#00f5ff" />
+      <text x="154" y="72" font-family="'Outfit', sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#031321">AL</text>
+    </g>
+  </g>
+</svg>

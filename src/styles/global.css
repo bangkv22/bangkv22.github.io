@@ -31,8 +31,11 @@
   --glow-coral: 0 0 20px rgba(255, 93, 177, 0.35);
   --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 
-  --prism-gradient: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-aqua) 30%, var(--prism-purple) 70%, var(--coral-pink) 100%);
-  --ocean-gradient: linear-gradient(180deg, #031321 0%, #051a2e 50%, #020a12 100%);
+  --prism-gradient: linear-gradient(135deg, #00f5ff 0%, #20e3d2 25%, #9b5cff 55%, #ec4899 80%, #ff5db1 100%);
+  --aurora-gradient: linear-gradient(135deg, #00f5ff 0%, #3b82f6 30%, #8b5cf6 60%, #ec4899 100%);
+  --sunset-gradient: linear-gradient(135deg, #ff5db1 0%, #ec4899 40%, #f59e0b 100%);
+  --cyan-emerald: linear-gradient(135deg, #00f5ff 0%, #10b981 100%);
+  --ocean-gradient: radial-gradient(ellipse at 50% -10%, #0c3358 0%, #031321 45%, #020a12 100%);
 
   --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
@@ -305,6 +308,30 @@ code, pre {
   background: rgba(255, 93, 177, 0.12);
   color: #ff9ecb;
   border-color: rgba(255, 93, 177, 0.25);
+}
+
+.badge-emerald {
+  background: rgba(34, 197, 94, 0.12);
+  color: #4ade80;
+  border-color: rgba(34, 197, 94, 0.28);
+}
+
+.badge-gold {
+  background: rgba(245, 158, 11, 0.12);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.28);
+}
+
+.badge-blue {
+  background: rgba(59, 130, 246, 0.12);
+  color: #60a5fa;
+  border-color: rgba(59, 130, 246, 0.28);
+}
+
+.badge-aurora {
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.15), rgba(168, 85, 247, 0.15));
+  color: #eafbff;
+  border-color: rgba(0, 245, 255, 0.35);
 }
 
 /* Reduced Motion */

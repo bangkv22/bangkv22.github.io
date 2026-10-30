@@ -102,7 +102,7 @@ Trước khi chia sẻ portfolio rộng rãi, bạn có thể chỉnh sửa các
 
 | Nội dung cần thay | Vị trí tập tin | Ghi chú |
 |---|---|---|
-| Tên, Tagline, Bio Hero | `src/pages/index.astro` | Thay đổi tên hiển thị `Bang K.V.` và dòng giới thiệu |
+| Tên, Tagline, Bio Hero | `src/pages/index.astro` | Thay đổi tên hiển thị `VO KHANH BANG` và dòng giới thiệu |
 | Câu chuyện, Trường học, CV | `src/pages/about.astro` | Cập nhật trường đại học, mục tiêu và liên kết file CV PDF |
 | Danh sách kỹ năng | `src/pages/skills.astro` | Điều chỉnh tỉ lệ % và các công nghệ thực tế bạn sử dụng |
 | Dự án thực tế | `src/pages/projects.astro` | Thêm ảnh demo, link GitHub repo thật của bạn |

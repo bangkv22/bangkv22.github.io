@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480">
+  <defs>
+    <linearGradient id="dbBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020914" />
+      <stop offset="50%" stop-color="#06162d" />
+      <stop offset="100%" stop-color="#140624" />
+    </linearGradient>
+
+    <linearGradient id="dbCylGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f5ff" />
+      <stop offset="50%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#00f5ff" />
+    </linearGradient>
+
+    <linearGradient id="dbCylGradPink" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff3388" />
+      <stop offset="50%" stop-color="#9333ea" />
+      <stop offset="100%" stop-color="#ff3388" />
+    </linearGradient>
+
+    <radialGradient id="dbGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00f5ff" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="transparent" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="800" height="480" fill="url(#dbBg)" />
+  <circle cx="260" cy="240" r="220" fill="url(#dbGlow)" />
+
+  <!-- App Window Frame -->
+  <rect x="50" y="40" width="700" height="400" rx="16" fill="rgba(4, 18, 36, 0.8)" stroke="rgba(0, 245, 255, 0.3)" stroke-width="1.5" />
+
+  <!-- Window Header -->
+  <rect x="50" y="40" width="700" height="44" rx="16" fill="rgba(2, 12, 24, 0.9)" />
+  <rect x="50" y="70" width="700" height="14" fill="rgba(2, 12, 24, 0.9)" />
+  <line x1="50" y1="84" x2="750" y2="84" stroke="rgba(0, 245, 255, 0.15)" stroke-width="1" />
+
+  <circle cx="78" cy="62" r="6" fill="#ff5f56" />
+  <circle cx="98" cy="62" r="6" fill="#ffbd2e" />
+  <circle cx="118" cy="62" r="6" fill="#27c93f" />
+
+  <text x="146" y="66" font-family="'Outfit', sans-serif" font-size="13" font-weight="700" fill="#eafbff">
+    DATABASE ENGINE QUERY PROFILER &amp; INDEX OPTIMIZER <tspan fill="#00f5ff" font-size="11">[SQL CLUSTER: 100K ROWS]</tspan>
+  </text>
+
+  <!-- Left: 3D Holographic Cylinder Database Stack -->
+  <g transform="translate(100, 110)">
+    <text x="60" y="24" font-family="'Outfit', sans-serif" font-size="13" font-weight="700" fill="#00f5ff" text-anchor="middle">PRIMARY STORAGE CLUSTER</text>
+
+    <!-- Top Cylinder -->
+    <g transform="translate(0, 50)">
+      <path d="M10,20 L10,50 C10,65 110,65 110,50 L110,20 Z" fill="rgba(0, 245, 255, 0.15)" stroke="#00f5ff" stroke-width="1.5" />
+      <ellipse cx="60" cy="20" rx="50" ry="16" fill="rgba(32, 227, 210, 0.3)" stroke="#00f5ff" stroke-width="1.5" />
+      <ellipse cx="60" cy="50" rx="50" ry="16" fill="none" stroke="#00f5ff" stroke-width="1.2" stroke-dasharray="4 3" />
+      <circle cx="60" cy="20" r="5" fill="#ffffff" filter="drop-shadow(0 0 6px #00f5ff)" />
+    </g>
+
+    <!-- Mid Cylinder -->
+    <g transform="translate(0, 115)">
+      <path d="M10,20 L10,50 C10,65 110,65 110,50 L110,20 Z" fill="rgba(168, 85, 247, 0.15)" stroke="#a855f7" stroke-width="1.5" />
+      <ellipse cx="60" cy="20" rx="50" ry="16" fill="rgba(168, 85, 247, 0.3)" stroke="#a855f7" stroke-width="1.5" />
+      <ellipse cx="60" cy="50" rx="50" ry="16" fill="none" stroke="#a855f7" stroke-width="1.2" stroke-dasharray="4 3" />
+    </g>
+
+    <!-- Bottom Cylinder -->
+    <g transform="translate(0, 180)">
+      <path d="M10,20 L10,50 C10,65 110,65 110,50 L110,20 Z" fill="rgba(255, 51, 136, 0.15)" stroke="#ff3388" stroke-width="1.5" />
+      <ellipse cx="60" cy="20" rx="50" ry="16" fill="rgba(255, 51, 136, 0.3)" stroke="#ff3388" stroke-width="1.5" />
+      <ellipse cx="60" cy="50" rx="50" ry="16" fill="none" stroke="#ff3388" stroke-width="1.2" stroke-dasharray="4 3" />
+    </g>
+
+    <!-- Data Flowing Laser Beams -->
+    <path d="M120,80 L160,80 L160,200 L120,200" stroke="#00f5ff" stroke-width="1.5" fill="none" stroke-dasharray="6 4" />
+    <circle cx="160" cy="140" r="4" fill="#ff3388" />
+  </g>
+
+  <!-- Right: SQL Profiler & Execution Plan Benchmarks -->
+  <!-- SQL Editor Window -->
+  <g transform="translate(280, 104)">
+    <rect width="440" height="150" rx="10" fill="rgba(2, 10, 20, 0.85)" stroke="rgba(0, 245, 255, 0.25)" stroke-width="1" />
+    <rect x="0" y="0" width="440" height="28" rx="10" fill="rgba(2, 14, 28, 0.9)" />
+    <text x="16" y="19" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#00f5ff">EXPLAIN ANALYZE SELECT * FROM orders_indexed</text>
+
+    <!-- SQL Code Lines -->
+    <text x="16" y="52" font-family="'JetBrains Mono', monospace" font-size="11" fill="#c084fc">SELECT <tspan fill="#eafbff">o.id, o.amount, c.customer_name</tspan></text>
+    <text x="16" y="72" font-family="'JetBrains Mono', monospace" font-size="11" fill="#c084fc">FROM <tspan fill="#eafbff">orders o </tspan><tspan fill="#38bdf8">INNER JOIN</tspan> <tspan fill="#eafbff">customers c ON o.customer_id = c.id</tspan></text>
+    <text x="16" y="92" font-family="'JetBrains Mono', monospace" font-size="11" fill="#c084fc">WHERE <tspan fill="#eafbff">o.created_at &gt;= </tspan><tspan fill="#4ade80">'2026-01-01'</tspan> <tspan fill="#38bdf8">AND</tspan> <tspan fill="#eafbff">o.status = </tspan><tspan fill="#4ade80">'CONFIRMED'</tspan></text>
+    <text x="16" y="112" font-family="'JetBrains Mono', monospace" font-size="11" fill="#c084fc">ORDER BY <tspan fill="#eafbff">o.amount DESC </tspan><tspan fill="#f59e0b">LIMIT 100;</tspan></text>
+    
+    <text x="16" y="136" font-family="'JetBrains Mono', monospace" font-size="10" fill="#22c55e">✓ Index Scan on idx_orders_created_status (cost=0.42..18.25)</text>
+  </g>
+
+  <!-- Benchmark Before vs After Comparison Card -->
+  <g transform="translate(280, 268)">
+    <rect width="440" height="150" rx="10" fill="rgba(2, 10, 20, 0.85)" stroke="rgba(168, 85, 247, 0.25)" stroke-width="1" />
+    <text x="16" y="26" font-family="'Outfit', sans-serif" font-size="13" font-weight="700" fill="#eafbff">PERFORMANCE OPTIMIZATION BENCHMARK</text>
+
+    <!-- Before Optimization -->
+    <text x="16" y="60" font-family="'Outfit', sans-serif" font-size="11" fill="#ef4444">Before Optimization (Table Scan)</text>
+    <rect x="16" y="70" width="300" height="18" rx="4" fill="rgba(239, 68, 68, 0.25)" />
+    <rect x="16" y="70" width="280" height="18" rx="4" fill="#ef4444" opacity="0.8" />
+    <text x="325" y="84" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#ef4444">1,480 ms</text>
+
+    <!-- After Optimization -->
+    <text x="16" y="112" font-family="'Outfit', sans-serif" font-size="11" fill="#22c55e">After B-Tree Index + Query Restructure</text>
+    <rect x="16" y="122" width="300" height="18" rx="4" fill="rgba(34, 197, 94, 0.2)" />
+    <rect x="16" y="122" width="18" height="18" rx="4" fill="#22c55e" />
+    <text x="325" y="136" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#22c55e">12 ms (99.2% Faster!)</text>
+  </g>
+</svg>

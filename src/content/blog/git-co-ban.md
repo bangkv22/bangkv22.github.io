@@ -1,4 +1,4 @@
----
+﻿---
 title: "Làm chủ Git & GitHub: Cẩm nang quản lý mã nguồn cho Developer"
 description: "Hướng dẫn thực chiến các câu lệnh Git thiết yếu, mô hình phân nhánh và quy trình đẩy code lên GitHub an toàn."
 pubDate: 2026-10-25

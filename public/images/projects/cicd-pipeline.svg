@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480">
+  <defs>
+    <linearGradient id="ciBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020914" />
+      <stop offset="50%" stop-color="#08152c" />
+      <stop offset="100%" stop-color="#180a28" />
+    </linearGradient>
+
+    <linearGradient id="ciBeam" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="50%" stop-color="#00f5ff" />
+      <stop offset="100%" stop-color="#22c55e" />
+    </linearGradient>
+
+    <radialGradient id="ciGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#22c55e" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="transparent" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="800" height="480" fill="url(#ciBg)" />
+  <circle cx="400" cy="240" r="260" fill="url(#ciGlow)" />
+
+  <!-- App Window Frame -->
+  <rect x="50" y="40" width="700" height="400" rx="16" fill="rgba(6, 20, 38, 0.8)" stroke="rgba(34, 197, 94, 0.35)" stroke-width="1.5" />
+
+  <!-- Window Header -->
+  <rect x="50" y="40" width="700" height="44" rx="16" fill="rgba(2, 12, 24, 0.9)" />
+  <rect x="50" y="70" width="700" height="14" fill="rgba(2, 12, 24, 0.9)" />
+  <line x1="50" y1="84" x2="750" y2="84" stroke="rgba(34, 197, 94, 0.2)" stroke-width="1" />
+
+  <circle cx="78" cy="62" r="6" fill="#ff5f56" />
+  <circle cx="98" cy="62" r="6" fill="#ffbd2e" />
+  <circle cx="118" cy="62" r="6" fill="#27c93f" />
+
+  <text x="146" y="66" font-family="'Outfit', sans-serif" font-size="13" font-weight="700" fill="#eafbff">
+    GITHUB ACTIONS CI/CD AUTOMATION PIPELINE <tspan fill="#22c55e" font-size="11">[ALL JOBS PASSED ✓]</tspan>
+  </text>
+
+  <!-- Top Pipeline Status Row -->
+  <g transform="translate(75, 104)">
+    <rect width="650" height="150" rx="12" fill="rgba(2, 10, 20, 0.85)" stroke="rgba(0, 245, 255, 0.25)" stroke-width="1" />
+    
+    <!-- Laser Pipeline Connecting Line -->
+    <line x1="80" y1="75" x2="570" y2="75" stroke="url(#ciBeam)" stroke-width="3" stroke-dasharray="8 6" />
+
+    <!-- Step 1: Push / Trigger -->
+    <g transform="translate(80, 75)">
+      <circle cx="0" cy="0" r="28" fill="#0c2642" stroke="#3b82f6" stroke-width="2.5" filter="drop-shadow(0 0 10px #3b82f6)" />
+      <!-- Git Branch Icon -->
+      <path d="M-6,-12 L-6,12 M-6,-2 C-6,-2 6,-6 6,4 M6,4 L6,12" stroke="#ffffff" stroke-width="2" fill="none" />
+      <circle cx="-6" cy="-10" r="3.5" fill="#38bdf8" />
+      <circle cx="-6" cy="10" r="3.5" fill="#38bdf8" />
+      <circle cx="6" cy="10" r="3.5" fill="#38bdf8" />
+      
+      <text x="0" y="44" font-family="'Outfit', sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#eafbff">git push</text>
+      <text x="0" y="58" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle" fill="#38bdf8">main branch</text>
+    </g>
+
+    <!-- Step 2: Checkout & Setup Node -->
+    <g transform="translate(240, 75)">
+      <circle cx="0" cy="0" r="28" fill="#0c2642" stroke="#00f5ff" stroke-width="2.5" filter="drop-shadow(0 0 10px #00f5ff)" />
+      <text x="0" y="5" font-family="'JetBrains Mono', monospace" font-size="18" font-weight="800" text-anchor="middle" fill="#00f5ff">Node</text>
+      
+      <text x="0" y="44" font-family="'Outfit', sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#eafbff">Setup Node.js</text>
+      <text x="0" y="58" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle" fill="#20e3d2">v22 (npm ci: 13s)</text>
+    </g>
+
+    <!-- Step 3: Astro Build -->
+    <g transform="translate(400, 75)">
+      <circle cx="0" cy="0" r="28" fill="#0c2642" stroke="#a855f7" stroke-width="2.5" filter="drop-shadow(0 0 10px #a855f7)" />
+      <!-- Astro Rocket / Star -->
+      <polygon points="0,-12 4,-3 12,0 4,3 0,12 -4,3 -12,0 -4,-3" fill="#c084fc" />
+      
+      <text x="0" y="44" font-family="'Outfit', sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#eafbff">Astro Build</text>
+      <text x="0" y="58" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle" fill="#c084fc">12 pages (1.7s)</text>
+    </g>
+
+    <!-- Step 4: GitHub Pages Deploy -->
+    <g transform="translate(560, 75)">
+      <circle cx="0" cy="0" r="28" fill="#0c2642" stroke="#22c55e" stroke-width="2.5" filter="drop-shadow(0 0 12px #22c55e)" />
+      <path d="M-9,0 L-3,6 L9,-6" stroke="#22c55e" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+      
+      <text x="0" y="44" font-family="'Outfit', sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#4ade80">Deploy Live</text>
+      <text x="0" y="58" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle" fill="#4ade80">HTTPS Live 100%</text>
+    </g>
+  </g>
+
+  <!-- Bottom Terminal Logs -->
+  <g transform="translate(75, 270)">
+    <rect width="650" height="150" rx="10" fill="rgba(2, 10, 20, 0.9)" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
+    <rect x="0" y="0" width="650" height="26" rx="10" fill="rgba(4, 18, 36, 0.9)" />
+    <text x="16" y="18" font-family="'JetBrains Mono', monospace" font-size="11" fill="#9ab8c8">workflow-run #48 — deploy.yml logs</text>
+
+    <text x="16" y="48" font-family="'JetBrains Mono', monospace" font-size="11" fill="#4ade80">✓ Run actions/checkout@v4</text>
+    <text x="16" y="68" font-family="'JetBrains Mono', monospace" font-size="11" fill="#4ade80">✓ Run actions/setup-node@v4 (node: 22, cache: npm)</text>
+    <text x="16" y="88" font-family="'JetBrains Mono', monospace" font-size="11" fill="#38bdf8">&gt; astro build: 12 static routes generated in 1.77s</text>
+    <text x="16" y="108" font-family="'JetBrains Mono', monospace" font-size="11" fill="#4ade80">✓ Upload Pages artifact: ./dist (0 errors)</text>
+    <text x="16" y="128" font-family="'JetBrains Mono', monospace" font-size="11" fill="#00f5ff">🚀 Successfully published to https://bangkv22.github.io</text>
+  </g>
+</svg>

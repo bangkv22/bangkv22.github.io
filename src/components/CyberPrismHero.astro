@@ -1,0 +1,352 @@
+---
+// CyberPrismHero.astro - Futuristic Holographic Cyber Reactor & Dev Terminal
+---
+
+<div class="cyber-hero-container" aria-label="VO KHANH BANG Cyber Hologram Showcase">
+  <!-- Ambient Multi-color Glowing Halo Backdrop -->
+  <div class="hologram-aura-glow"></div>
+
+  <!-- Central Hologram Stage -->
+  <div class="hologram-stage">
+    <!-- 3D Gyroscopic Floating Rings & Core Reactor -->
+    <div class="reactor-core-wrapper">
+      <svg viewBox="0 0 420 420" class="reactor-svg" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ringCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00f5ff" />
+            <stop offset="50%" stop-color="#20e3d2" />
+            <stop offset="100%" stop-color="#3b82f6" />
+          </linearGradient>
+
+          <linearGradient id="ringPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff3388" />
+            <stop offset="50%" stop-color="#ec4899" />
+            <stop offset="100%" stop-color="#8b5cf6" />
+          </linearGradient>
+
+          <linearGradient id="coreCrystalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" />
+            <stop offset="25%" stop-color="#00f5ff" />
+            <stop offset="60%" stop-color="#a855f7" />
+            <stop offset="100%" stop-color="#ff3388" />
+          </linearGradient>
+
+          <radialGradient id="plasmaGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+            <stop offset="30%" stop-color="#00f5ff" stop-opacity="0.6" />
+            <stop offset="70%" stop-color="#9333ea" stop-opacity="0.3" />
+            <stop offset="100%" stop-color="transparent" stop-opacity="0" />
+          </radialGradient>
+
+          <filter id="cyberNeonGlow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="6" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- Ambient Cyber Sparks -->
+        <g class="core-sparks" opacity="0.7">
+          <circle cx="80" cy="110" r="3" fill="#00f5ff" />
+          <circle cx="340" cy="90" r="3.5" fill="#ff3388" />
+          <circle cx="70" cy="280" r="2.5" fill="#20e3d2" />
+          <circle cx="350" cy="310" r="4" fill="#a855f7" />
+          <circle cx="210" cy="40" r="3" fill="#00f5ff" />
+          <circle cx="210" cy="380" r="3" fill="#ffbe3b" />
+        </g>
+
+        <!-- Orbital Gyro Ring 1 (Cyan/Aqua Axis) -->
+        <ellipse cx="210" cy="210" rx="170" ry="60" fill="none" stroke="url(#ringCyan)" stroke-width="2.5" stroke-dasharray="16 10 35 12" class="ring-spin-cw" opacity="0.85" />
+        
+        <!-- Orbital Gyro Ring 2 (Purple/Magenta Axis) -->
+        <ellipse cx="210" cy="210" rx="160" ry="65" fill="none" stroke="url(#ringPurple)" stroke-width="2" stroke-dasharray="25 14 10 8" class="ring-spin-ccw" opacity="0.8" />
+
+        <!-- Inner Sensor Ring -->
+        <circle cx="210" cy="210" r="100" fill="none" stroke="rgba(0, 245, 255, 0.2)" stroke-width="1.2" stroke-dasharray="4 6" />
+
+        <!-- Core Plasma Field -->
+        <circle cx="210" cy="210" r="60" fill="url(#plasmaGlow)" class="core-plasma" />
+
+        <!-- Central 3D Futuristic Octahedron Prism Crystal -->
+        <g transform="translate(210, 210)" filter="url(#cyberNeonGlow)" class="prism-core-crystal">
+          <!-- Top pyramid facets -->
+          <polygon points="0,-64 42,-8 0,16" fill="url(#coreCrystalGrad)" opacity="0.85" stroke="#ffffff" stroke-width="1" />
+          <polygon points="0,-64 -42,-8 0,16" fill="#00f5ff" opacity="0.65" stroke="#ffffff" stroke-width="1" />
+          
+          <!-- Bottom pyramid facets -->
+          <polygon points="0,64 42,-8 0,16" fill="#a855f7" opacity="0.9" stroke="#ffffff" stroke-width="1" />
+          <polygon points="0,64 -42,-8 0,16" fill="#ff3388" opacity="0.85" stroke="#ffffff" stroke-width="1" />
+          
+          <!-- Sharp Axis Sparkles -->
+          <line x1="0" y1="-76" x2="0" y2="76" stroke="#ffffff" stroke-width="2" opacity="0.95" />
+          <line x1="-54" y1="-8" x2="54" y2="-8" stroke="#ffffff" stroke-width="2" opacity="0.95" />
+          <circle cx="0" cy="-8" r="9" fill="#ffffff" filter="drop-shadow(0 0 12px #00f5ff)" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- Floating Interactive Glassmorphism Terminal Card -->
+    <div class="hologram-terminal glass-panel">
+      <!-- Window Controls & Title -->
+      <div class="terminal-bar">
+        <div class="terminal-dots">
+          <span class="dot dot-red"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+        </div>
+        <div class="terminal-title">developer.config.ts</div>
+        <div class="terminal-badge">
+          <span class="status-pulse-dot"></span>
+          <span>ONLINE</span>
+        </div>
+      </div>
+
+      <!-- Code Content -->
+      <div class="terminal-code">
+        <div class="code-line"><span class="c-keyword">const</span> <span class="c-variable">developer</span> = &#123;</div>
+        <div class="code-line indent"><span class="c-prop">name</span>: <span class="c-string">'VO KHANH BANG'</span>,</div>
+        <div class="code-line indent"><span class="c-prop">role</span>: <span class="c-string">'IT Student &amp; Web Developer'</span>,</div>
+        <div class="code-line indent"><span class="c-prop">mission</span>: <span class="c-string">'Explore Ocean of Code'</span>,</div>
+        <div class="code-line indent"><span class="c-prop">techStack</span>: [<span class="c-tag">'Astro'</span>, <span class="c-tag">'TypeScript'</span>, <span class="c-tag">'Fullstack'</span>],</div>
+        <div class="code-line indent"><span class="c-prop">status</span>: <span class="c-green">'Ready for Internship &amp; Projects 🚀'</span></div>
+        <div class="code-line">&#125;;</div>
+      </div>
+
+      <!-- Mini Badges Row in Terminal -->
+      <div class="terminal-footer">
+        <span class="badge badge-emerald">⚡ 100% Performance</span>
+        <span class="badge badge-aurora">💎 Glassmorphism UI</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cyber-hero-container {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hologram-aura-glow {
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 245, 255, 0.25) 0%, rgba(168, 85, 247, 0.2) 40%, rgba(255, 51, 136, 0.12) 65%, transparent 80%);
+    filter: blur(40px);
+    z-index: 0;
+    animation: aura-breathe 8s ease-in-out infinite;
+  }
+
+  .hologram-stage {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .reactor-core-wrapper {
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .reactor-svg {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 15px 35px rgba(0, 245, 255, 0.35));
+    animation: core-levitate 6s ease-in-out infinite;
+  }
+
+  .ring-spin-cw {
+    transform-origin: 210px 210px;
+    animation: spin-clockwise 22s linear infinite;
+  }
+
+  .ring-spin-ccw {
+    transform-origin: 210px 210px;
+    animation: spin-counter-clockwise 18s linear infinite;
+  }
+
+  .prism-core-crystal {
+    animation: crystal-pulse 4s ease-in-out infinite;
+  }
+
+  .core-plasma {
+    animation: plasma-flicker 3s ease-in-out infinite;
+  }
+
+  /* Holographic Terminal Overlay */
+  .hologram-terminal {
+    width: 100%;
+    max-width: 460px;
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    background: rgba(4, 18, 36, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 245, 255, 0.35);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 245, 255, 0.2);
+    position: relative;
+    z-index: 2;
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .hologram-terminal:hover {
+    transform: translateY(-4px);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 25px 55px rgba(0, 0, 0, 0.7), 0 0 35px rgba(0, 245, 255, 0.35);
+  }
+
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(0, 245, 255, 0.15);
+    margin-bottom: 0.9rem;
+  }
+
+  .terminal-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .dot-red { background: #ff5f56; }
+  .dot-yellow { background: #ffbd2e; }
+  .dot-green { background: #27c93f; }
+
+  .terminal-title {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  .terminal-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #4ade80;
+    background: rgba(34, 197, 94, 0.12);
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(34, 197, 94, 0.25);
+  }
+
+  .status-pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #4ade80;
+    box-shadow: 0 0 6px #4ade80;
+    animation: status-blink 1.8s infinite;
+  }
+
+  .terminal-code {
+    font-family: var(--font-mono);
+    font-size: 0.84rem;
+    line-height: 1.6;
+    color: #eafbff;
+  }
+
+  .indent {
+    padding-left: 1.25rem;
+  }
+
+  .c-keyword { color: #f43f5e; font-weight: 600; }
+  .c-variable { color: #38bdf8; }
+  .c-prop { color: #c084fc; }
+  .c-string { color: #fed7aa; }
+  .c-tag { color: #00f5ff; }
+  .c-green { color: #4ade80; font-weight: 500; }
+
+  .terminal-footer {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* Keyframe Animations */
+  @keyframes core-levitate {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+
+  @keyframes spin-clockwise {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes spin-counter-clockwise {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
+  }
+
+  @keyframes crystal-pulse {
+    0%, 100% {
+      transform: scale(1);
+      filter: drop-shadow(0 0 10px rgba(0, 245, 255, 0.6));
+    }
+    50% {
+      transform: scale(1.08);
+      filter: drop-shadow(0 0 25px rgba(236, 72, 153, 0.8)) drop-shadow(0 0 35px rgba(0, 245, 255, 0.5));
+    }
+  }
+
+  @keyframes plasma-flicker {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 0.9; transform: scale(1.15); }
+  }
+
+  @keyframes aura-breathe {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.18); opacity: 1; }
+  }
+
+  @keyframes status-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  @media (max-width: 768px) {
+    .hologram-terminal {
+      padding: 1rem;
+    }
+    .terminal-code {
+      font-size: 0.78rem;
+    }
+    .reactor-core-wrapper {
+      max-width: 280px;
+      margin-bottom: -20px;
+    }
+  }
+</style>
