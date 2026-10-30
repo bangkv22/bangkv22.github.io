@@ -1,0 +1,93 @@
+---
+// BlogCard.astro
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  category: string;
+  tags: string[];
+  slug: string;
+  cover?: string;
+}
+
+const { title, description, pubDate, category, tags, slug, cover } = Astro.props;
+
+// Date formatter
+const formattedDate = new Intl.DateTimeFormat('vi-VN', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+}).format(new Date(pubDate));
+---
+
+<article class="blog-card">
+  <div class="blog-thumb-wrap">
+    {cover ? (
+      <img src={cover} alt={title} class="blog-thumb" loading="lazy" />
+    ) : (
+      <div class="blog-thumb-placeholder">
+        <svg viewBox="0 0 100 100" width="48" height="48" opacity="0.6">
+          <circle cx="50" cy="50" r="38" stroke="#9b5cff" stroke-width="2" fill="none" stroke-dasharray="6 4" />
+          <polygon points="50,25 70,65 30,65" stroke="#00f5ff" stroke-width="1.5" fill="rgba(0, 245, 255, 0.1)" />
+        </svg>
+        <span class="placeholder-tag">{category}</span>
+      </div>
+    )}
+    <span class="blog-cat-floating">{category}</span>
+  </div>
+
+  <div class="blog-card-body">
+    <div class="blog-meta">
+      <time datetime={new Date(pubDate).toISOString()}>{formattedDate}</time>
+      <span>•</span>
+      <span>Đọc ~4 phút</span>
+    </div>
+
+    <h3 class="blog-title">
+      <a href={`/blog/${slug}`}>{title}</a>
+    </h3>
+
+    <p class="blog-excerpt">{description}</p>
+
+    <div class="blog-tags">
+      {tags.map((t) => (
+        <span class="badge badge-purple">#{t}</span>
+      ))}
+    </div>
+  </div>
+</article>
+
+<style>
+  .blog-thumb-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at top, #0c2c48 0%, #031321 80%);
+  }
+
+  .placeholder-tag {
+    font-size: 0.72rem;
+    color: var(--neon-cyan);
+    margin-top: 0.4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .blog-cat-floating {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(3, 19, 33, 0.85);
+    border: 1px solid var(--border-glass);
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--neon-cyan);
+    backdrop-filter: blur(8px);
+  }
+</style>

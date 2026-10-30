@@ -1,0 +1,239 @@
+---
+// src/pages/blog/index.astro
+import MainLayout from '../../layouts/MainLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+// Get all non-draft posts sorted by pubDate descending
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Collect all unique categories
+const categories = ['All', ...new Set(posts.map((p) => p.data.category))];
+---
+
+<MainLayout 
+  title="Blog Kỹ thuật & Hành trình — AQUA PRISM Portfolio"
+  description="Chia sẻ kinh nghiệm lập trình Web, giải thuật, cơ sở dữ liệu và cẩm nang tự học Công nghệ Thông tin."
+>
+  <div class="container" style="padding-top: 3.5rem; padding-bottom: 5rem;">
+    <div class="section-header">
+      <div class="section-tag">Góc Tri Thức • Tech Blog</div>
+      <h1 class="section-title">Khám phá Nhật ký <span class="gradient-text">Mã nguồn</span></h1>
+      <p class="section-subtitle">
+        Nơi đúc kết những bài học thực chiến, giải mã thuật toán phức tạp và lưu lại hành trình học tập ngành IT.
+      </p>
+    </div>
+
+    <!-- Live Search & Category Controls -->
+    <div class="blog-controls-wrapper glass-panel">
+      <!-- Search Input -->
+      <div class="search-input-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input 
+          type="search" 
+          id="blogSearchInput" 
+          placeholder="Tìm bài viết theo tiêu đề, từ khóa, công nghệ (VD: HTML, Git, CSS)..." 
+          class="blog-search-field"
+        />
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="blog-category-pills">
+        {categories.map((cat, idx) => (
+          <button 
+            class={`category-pill ${idx === 0 ? 'active' : ''}`}
+            data-cat={cat.toLowerCase()}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Posts Grid -->
+    <div class="blog-grid" id="blogGridContainer">
+      {posts.map((post) => (
+        <div 
+          class="blog-item-wrapper" 
+          data-title={post.data.title.toLowerCase()}
+          data-desc={post.data.description.toLowerCase()}
+          data-cat={post.data.category.toLowerCase()}
+          data-tags={post.data.tags.join(' ').toLowerCase()}
+        >
+          <BlogCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            category={post.data.category}
+            tags={post.data.tags}
+            slug={post.id}
+            cover={post.data.cover}
+          />
+        </div>
+      ))}
+    </div>
+
+    <!-- Empty Search State -->
+    <div id="noBlogResults" class="no-results-panel" style="display: none;">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00f5ff" stroke-width="1.5">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        <line x1="8" y1="11" x2="14" y2="11"></line>
+      </svg>
+      <h3 style="margin-top: 1rem; color: var(--text-main);">Không tìm thấy bài viết phù hợp</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem;">
+        Hãy thử tìm với từ khóa khác như "HTML", "Git", "CSS" hoặc chọn "All".
+      </p>
+    </div>
+  </div>
+</MainLayout>
+
+<style>
+  .blog-controls-wrapper {
+    padding: 1.5rem;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .search-input-box {
+    position: relative;
+    width: 100%;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--neon-cyan);
+    pointer-events: none;
+  }
+
+  .blog-search-field {
+    width: 100%;
+    padding: 0.85rem 1.2rem 0.85rem 3.2rem;
+    border-radius: var(--radius-full);
+    background: rgba(3, 19, 33, 0.8);
+    border: 1px solid var(--border-glass);
+    color: var(--text-main);
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.25s ease;
+  }
+
+  .blog-search-field:focus {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 15px rgba(0, 245, 255, 0.25);
+  }
+
+  .blog-category-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .category-pill {
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius-full);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-glass);
+    color: var(--text-muted);
+    transition: all 0.25s ease;
+  }
+
+  .category-pill:hover {
+    color: var(--neon-cyan);
+    border-color: var(--neon-cyan);
+  }
+
+  .category-pill.active {
+    background: var(--neon-cyan);
+    color: #031321;
+    border-color: var(--neon-cyan);
+    box-shadow: 0 2px 10px rgba(0, 245, 255, 0.4);
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .no-results-panel {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--bg-surface);
+    border: 1px dashed var(--border-glass);
+    border-radius: var(--radius-md);
+    max-width: 500px;
+    margin: 2rem auto;
+  }
+
+  @media (max-width: 1024px) {
+    .blog-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  // Instant search & category filter logic
+  const searchInput = document.getElementById('blogSearchInput') as HTMLInputElement;
+  const categoryPills = document.querySelectorAll('.category-pill');
+  const blogItems = document.querySelectorAll<HTMLElement>('.blog-item-wrapper');
+  const noBlogResults = document.getElementById('noBlogResults');
+
+  let activeCategory = 'all';
+
+  function filterBlogPosts() {
+    const query = (searchInput?.value || '').toLowerCase().trim();
+    let visibleCount = 0;
+
+    blogItems.forEach((item) => {
+      const title = item.getAttribute('data-title') || '';
+      const desc = item.getAttribute('data-desc') || '';
+      const cat = item.getAttribute('data-cat') || '';
+      const tags = item.getAttribute('data-tags') || '';
+
+      const matchesCat = activeCategory === 'all' || cat === activeCategory;
+      const matchesSearch = !query || title.includes(query) || desc.includes(query) || tags.includes(query) || cat.includes(query);
+
+      if (matchesCat && matchesSearch) {
+        item.style.display = 'block';
+        visibleCount++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    if (noBlogResults) {
+      noBlogResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+  }
+
+  searchInput?.addEventListener('input', filterBlogPosts);
+
+  categoryPills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      categoryPills.forEach((p) => p.classList.remove('active'));
+      pill.classList.add('active');
+      activeCategory = pill.getAttribute('data-cat') || 'all';
+      filterBlogPosts();
+    });
+  });
+</script>

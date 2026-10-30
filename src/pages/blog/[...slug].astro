@@ -1,0 +1,389 @@
+---
+// src/pages/blog/[...slug].astro
+import MainLayout from '../../layouts/MainLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+
+// Calculate reading time approximation
+const wordsPerMinute = 200;
+// We can approximate by post body length or default
+const readingMinutes = Math.max(2, Math.ceil((post.body || '').split(/\s+/).length / wordsPerMinute));
+
+// Date formatted
+const formattedDate = new Intl.DateTimeFormat('vi-VN', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(new Date(post.data.pubDate));
+
+// Related posts
+const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.title !== post.data.title);
+const relatedPosts = allPosts
+  .filter((p) => p.data.category === post.data.category || p.data.tags.some((t) => post.data.tags.includes(t)))
+  .slice(0, 2);
+---
+
+<MainLayout 
+  title={`${post.data.title} — AQUA PRISM Blog`}
+  description={post.data.description}
+  ogImage={post.data.cover}
+>
+  <div class="container-narrow" style="padding-top: 3.5rem; padding-bottom: 6rem;">
+    <!-- Breadcrumb & Back Link -->
+    <div style="margin-bottom: 2rem;">
+      <a href="/blog" class="back-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+        <span>Quay lại danh sách bài viết</span>
+      </a>
+    </div>
+
+    <!-- Article Header -->
+    <header class="article-header">
+      <div class="article-meta-row">
+        <span class="badge">{post.data.category}</span>
+        <span class="meta-dot">•</span>
+        <time datetime={new Date(post.data.pubDate).toISOString()}>{formattedDate}</time>
+        <span class="meta-dot">•</span>
+        <span>Thời gian đọc: ~{readingMinutes} phút</span>
+      </div>
+
+      <h1 class="article-main-title">{post.data.title}</h1>
+      <p class="article-lead-desc">{post.data.description}</p>
+
+      <div class="article-tags-row">
+        {post.data.tags.map((t) => (
+          <span class="badge badge-purple">#{t}</span>
+        ))}
+      </div>
+    </header>
+
+    <!-- Table of Contents (if headings exist) -->
+    {headings && headings.length > 0 && (
+      <nav class="table-of-contents glass-panel" aria-label="Mục lục bài viết">
+        <div class="toc-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          <span>Mục lục bài viết</span>
+        </div>
+        <ul class="toc-list">
+          {headings.map((h) => (
+            <li class={`toc-item depth-${h.depth}`}>
+              <a href={`#${h.slug}`}>{h.text}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    )}
+
+    <!-- Main Markdown Body -->
+    <article class="markdown-article-body glass-panel" id="postArticleContent">
+      <Content />
+    </article>
+
+    <!-- Article Share & Actions -->
+    <div class="article-share-bar glass-panel" style="margin-top: 2.5rem;">
+      <div style="font-weight: 600; color: var(--text-main);">Chia sẻ bài viết này:</div>
+      <div class="share-btns">
+        <button id="copyPostUrlBtn" class="share-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span id="copyFeedback">Sao chép Link</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Related Posts -->
+    {relatedPosts.length > 0 && (
+      <div style="margin-top: 4.5rem;">
+        <h3 style="font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--neon-cyan);">
+          Bài viết liên quan
+        </h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+          {relatedPosts.map((rp) => (
+            <BlogCard
+              title={rp.data.title}
+              description={rp.data.description}
+              pubDate={rp.data.pubDate}
+              category={rp.data.category}
+              tags={rp.data.tags}
+              slug={rp.id}
+              cover={rp.data.cover}
+            />
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+</MainLayout>
+
+<style>
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .back-link:hover {
+    color: var(--neon-cyan);
+    transform: translateX(-4px);
+  }
+
+  .article-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .article-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+  }
+
+  .meta-dot {
+    color: var(--prism-purple);
+  }
+
+  .article-main-title {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+  }
+
+  .article-lead-desc {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .article-tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* Table of Contents */
+  .table-of-contents {
+    padding: 1.25rem 1.75rem;
+    margin-bottom: 2.5rem;
+    background: rgba(7, 30, 53, 0.45);
+    border-color: rgba(0, 245, 255, 0.2);
+  }
+
+  .toc-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 700;
+    color: var(--neon-cyan);
+    margin-bottom: 0.85rem;
+    font-size: 0.95rem;
+  }
+
+  .toc-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .toc-item a {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+  }
+
+  .toc-item a:hover {
+    color: var(--neon-cyan);
+    padding-left: 4px;
+  }
+
+  .toc-item.depth-2 {
+    padding-left: 0.5rem;
+  }
+
+  .toc-item.depth-3 {
+    padding-left: 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  /* Markdown Body Content */
+  .markdown-article-body {
+    padding: 2.5rem;
+    line-height: 1.8;
+    color: #d8e8f2;
+    font-size: 1.05rem;
+  }
+
+  .markdown-article-body :global(h2) {
+    font-size: 1.65rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--neon-cyan);
+    border-bottom: 1px solid rgba(0, 245, 255, 0.15);
+    padding-bottom: 0.5rem;
+  }
+
+  .markdown-article-body :global(h3) {
+    font-size: 1.3rem;
+    margin-top: 1.8rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-main);
+  }
+
+  .markdown-article-body :global(p) {
+    margin-bottom: 1.4rem;
+    color: #c9e0ed;
+  }
+
+  .markdown-article-body :global(ul),
+  .markdown-article-body :global(ol) {
+    margin-bottom: 1.4rem;
+    padding-left: 1.8rem;
+    color: #c9e0ed;
+  }
+
+  .markdown-article-body :global(li) {
+    margin-bottom: 0.4rem;
+  }
+
+  .markdown-article-body :global(blockquote) {
+    border-left: 3px solid var(--prism-purple);
+    background: rgba(155, 92, 255, 0.08);
+    padding: 1rem 1.25rem;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin: 1.8rem 0;
+    font-style: italic;
+    color: var(--text-main);
+  }
+
+  .markdown-article-body :global(pre) {
+    position: relative;
+    background: #020b13 !important;
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-sm);
+    padding: 1.25rem;
+    overflow-x: auto;
+    margin: 1.8rem 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  .markdown-article-body :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+  }
+
+  .markdown-article-body :global(:not(pre) > code) {
+    background: rgba(0, 245, 255, 0.1);
+    color: var(--neon-cyan);
+    padding: 0.2rem 0.45rem;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 245, 255, 0.2);
+  }
+
+  .article-share-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+  }
+
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    background: rgba(0, 245, 255, 0.1);
+    border: 1px solid var(--border-glass);
+    color: var(--neon-cyan);
+    cursor: pointer;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+  }
+
+  .share-btn:hover {
+    background: rgba(0, 245, 255, 0.2);
+    box-shadow: 0 0 12px rgba(0, 245, 255, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    .markdown-article-body {
+      padding: 1.5rem;
+    }
+    .article-share-bar {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<script>
+  // Add Copy Button to all code blocks dynamically
+  const preBlocks = document.querySelectorAll('.markdown-article-body pre');
+  preBlocks.forEach((pre) => {
+    const copyBtn = document.createElement('button');
+    copyBtn.className = 'code-copy-btn';
+    copyBtn.innerText = 'Copy';
+    copyBtn.style.position = 'absolute';
+    copyBtn.style.top = '8px';
+    copyBtn.style.right = '8px';
+    copyBtn.style.padding = '4px 8px';
+    copyBtn.style.fontSize = '12px';
+    copyBtn.style.borderRadius = '4px';
+    copyBtn.style.background = 'rgba(7, 30, 53, 0.8)';
+    copyBtn.style.color = '#00f5ff';
+    copyBtn.style.border = '1px solid rgba(0, 245, 255, 0.3)';
+    copyBtn.style.cursor = 'pointer';
+
+    copyBtn.addEventListener('click', async () => {
+      const code = pre.querySelector('code')?.innerText || pre.innerText;
+      await navigator.clipboard.writeText(code);
+      copyBtn.innerText = 'Copied!';
+      setTimeout(() => {
+        copyBtn.innerText = 'Copy';
+      }, 2000);
+    });
+
+    pre.appendChild(copyBtn);
+  });
+
+  // Copy URL Share button
+  const copyPostUrlBtn = document.getElementById('copyPostUrlBtn');
+  const copyFeedback = document.getElementById('copyFeedback');
+  copyPostUrlBtn?.addEventListener('click', async () => {
+    await navigator.clipboard.writeText(window.location.href);
+    if (copyFeedback) copyFeedback.innerText = 'Đã sao chép Link!';
+    setTimeout(() => {
+      if (copyFeedback) copyFeedback.innerText = 'Sao chép Link';
+    }, 2500);
+  });
+</script>

@@ -1,0 +1,132 @@
+---
+// ProjectCard.astro
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+  tags: string[];
+  image?: string;
+  problem?: string;
+  role?: string;
+  learned?: string;
+  demoUrl?: string;
+  githubUrl?: string;
+}
+
+const {
+  title,
+  description,
+  category,
+  tags,
+  image,
+  problem,
+  role,
+  learned,
+  demoUrl,
+  githubUrl,
+} = Astro.props;
+---
+
+<article class="project-card" data-category={category.toLowerCase()}>
+  <div class="project-thumb-wrapper">
+    {image ? (
+      <img src={image} alt={title} class="project-thumb" loading="lazy" />
+    ) : (
+      <div class="project-thumb-placeholder">
+        <svg viewBox="0 0 120 120" width="64" height="64" class="thumb-watermark">
+          <polygon points="60,15 105,45 105,95 60,115 15,95 15,45" stroke="#00f5ff" stroke-width="2" fill="none" opacity="0.4" />
+          <path d="M60,40 L60,85 M35,55 L85,75 M35,75 L85,55" stroke="#9b5cff" stroke-width="1.5" opacity="0.3" />
+        </svg>
+        <span class="placeholder-cat">{category}</span>
+      </div>
+    )}
+    <div class="project-category-badge">{category}</div>
+  </div>
+
+  <div class="project-content">
+    <h3 class="project-title">{title}</h3>
+    <p class="project-desc">{description}</p>
+
+    {problem && (
+      <div class="project-highlight-box">
+        <span class="highlight-label">Mục tiêu:</span> {problem}
+      </div>
+    )}
+
+    {role && (
+      <div class="project-highlight-box">
+        <span class="highlight-label">Vai trò:</span> {role}
+      </div>
+    )}
+
+    <div class="project-tags">
+      {tags.map((tag) => (
+        <span class="badge">{tag}</span>
+      ))}
+    </div>
+
+    <div class="project-links">
+      {demoUrl && (
+        <a href={demoUrl} target="_blank" rel="noopener noreferrer" class="project-link-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+          <span>Live Demo</span>
+        </a>
+      )}
+
+      {githubUrl && (
+        <a href={githubUrl} target="_blank" rel="noopener noreferrer" class="project-link-btn" style="color: var(--prism-purple);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+          <span>Source Code</span>
+        </a>
+      )}
+    </div>
+  </div>
+</article>
+
+<style>
+  .project-thumb-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, #072642 0%, #031321 80%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .thumb-watermark {
+    animation: bioluminescent-pulse 5s ease-in-out infinite;
+  }
+
+  .placeholder-cat {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--neon-cyan);
+    text-transform: uppercase;
+  }
+
+  .project-highlight-box {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    background: rgba(0, 245, 255, 0.04);
+    border-left: 2px solid var(--neon-cyan);
+    padding: 0.35rem 0.65rem;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin-bottom: 0.75rem;
+  }
+
+  .highlight-label {
+    color: var(--neon-cyan);
+    font-weight: 600;
+  }
+</style>

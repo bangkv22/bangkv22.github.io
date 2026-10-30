@@ -1,0 +1,187 @@
+---
+// src/pages/experience.astro
+import MainLayout from '../layouts/MainLayout.astro';
+import PrismCard from '../components/PrismCard.astro';
+
+const experiences = [
+  {
+    period: '2024 - 2025',
+    role: 'Trưởng nhóm Đồ án Phát triển Ứng dụng Web',
+    org: 'Bộ môn Kỹ thuật Phần mềm — Khoa CNTT',
+    type: 'Đồ án Học thuật & Nhóm',
+    tasks: [
+      'Lên kế hoạch phân chia công việc theo phương pháp Kanban cho 4 thành viên.',
+      'Thiết kế kiến trúc hệ thống MVC, cấu trúc cơ sở dữ liệu quan hệ và tài liệu API.',
+      'Trực tiếp lập trình các module bảo mật người dùng, phân quyền truy cập và kiểm thử chức năng.',
+      'Bảo vệ đồ án trước hội đồng giảng viên đạt số điểm 9.2/10.'
+    ],
+    tech: ['JavaScript', 'PHP / ASP.NET', 'MySQL', 'Git', 'Postman'],
+    result: 'Sản phẩm hoàn thiện đúng thời hạn, không xảy ra xung đột mã nguồn lớn và được khoa đánh giá cao.'
+  },
+  {
+    period: '2023 - 2024',
+    role: 'Thành viên Ban Kỹ thuật / Lập trình',
+    org: 'Câu lạc bộ Tin học & Công nghệ Trẻ Sinh viên',
+    type: 'Hoạt động Ngoại khóa & Chuyên môn',
+    tasks: [
+      'Hỗ trợ tổ chức các buổi workshop chia sẻ kỹ năng lập trình web căn bản cho sinh viên khóa mới.',
+      'Tham gia quản trị fanpage học thuật, biên soạn nội dung giải bài tập thuật toán C++ / Java.',
+      'Phối hợp xây dựng mini landing page cho sự kiện tuyển thành viên câu lạc bộ.'
+    ],
+    tech: ['HTML5', 'CSS3', 'Git', 'Figma', 'Markdown'],
+    result: 'Lan tỏa cảm hứng học lập trình đến hơn 200+ tân sinh viên và nâng cao kỹ năng làm việc tập thể.'
+  },
+  {
+    period: '2024',
+    role: 'Cộng tác viên Thử nghiệm Phần mềm & Nghiên cứu Công nghệ Mới',
+    org: 'Dự án Tự do & Thực hành Cá nhân',
+    type: 'Nghiên cứu & Thử nghiệm',
+    tasks: [
+      'Tìm hiểu và triển khai thử nghiệm các framework tĩnh hiện đại như Astro, Next.js và Tailwind CSS.',
+      'Đánh giá hiệu năng tải trang, mức độ tiêu thụ RAM và tối ưu hóa CSS Glassmorphism trên thiết bị di động.',
+      'Đóng gói thành các mẫu template chia sẻ mã nguồn mở trên GitHub.'
+    ],
+    tech: ['Astro', 'TypeScript', 'Responsive Design', 'Lighthouse'],
+    result: 'Nắm vững kiến trúc Jamstack, đạt điểm hiệu năng 98-100 trên Google Lighthouse.'
+  }
+];
+---
+
+<MainLayout 
+  title="Kinh nghiệm & Hoạt động — AQUA PRISM Portfolio"
+  description="Quá trình thực hành đồ án, vai trò điều phối nhóm và hoạt động chuyên môn của Bang K.V."
+>
+  <div class="container" style="padding-top: 3.5rem; padding-bottom: 5rem;">
+    <div class="section-header">
+      <div class="section-tag">Kinh nghiệm & Thực tiễn • Learning & Activities</div>
+      <h1 class="section-title">Hành trình Thực hành & <span class="gradient-text">Hoạt động Chuyên môn</span></h1>
+      <p class="section-subtitle">
+        Tổng hợp các vai trò dẫn dắt đồ án, hoạt động câu lạc bộ kỹ thuật và các dự án nghiên cứu công nghệ thực chiến.
+      </p>
+    </div>
+
+    <!-- Timeline of Experiences -->
+    <div class="exp-timeline">
+      {experiences.map((exp, idx) => (
+        <div class="exp-card-wrapper">
+          <div class="exp-marker">
+            <span class="exp-dot"></span>
+          </div>
+
+          <PrismCard glowColor={idx === 0 ? 'cyan' : idx === 1 ? 'purple' : 'coral'} className="exp-prism-card">
+            <div class="exp-header">
+              <div>
+                <span class="badge badge-purple">{exp.type}</span>
+                <h2 style="font-size: 1.35rem; margin-top: 0.5rem; margin-bottom: 0.25rem; color: var(--text-main);">
+                  {exp.role}
+                </h2>
+                <div style="font-size: 0.92rem; color: var(--neon-cyan); font-weight: 500;">
+                  {exp.org}
+                </div>
+              </div>
+              <div class="exp-period-badge">
+                {exp.period}
+              </div>
+            </div>
+
+            <div class="exp-body" style="margin-top: 1.25rem;">
+              <h4 style="font-size: 0.95rem; color: var(--text-main); margin-bottom: 0.6rem;">Nhiệm vụ & Trọng trách chính:</h4>
+              <ul class="exp-task-list">
+                {exp.tasks.map((task) => (
+                  <li>{task}</li>
+                ))}
+              </ul>
+
+              <div class="exp-result-box">
+                <span style="color: var(--neon-cyan); font-weight: 700;">Kết quả đạt được:</span> {exp.result}
+              </div>
+
+              <div class="exp-tech-row">
+                <span style="font-size: 0.85rem; color: var(--text-dim); margin-right: 0.5rem;">Công nghệ & Công cụ:</span>
+                {exp.tech.map((t) => (
+                  <span class="badge">{t}</span>
+                ))}
+              </div>
+            </div>
+          </PrismCard>
+        </div>
+      ))}
+    </div>
+  </div>
+</MainLayout>
+
+<style>
+  .exp-timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .exp-card-wrapper {
+    position: relative;
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .exp-period-badge {
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--radius-full);
+    background: rgba(0, 245, 255, 0.1);
+    border: 1px solid rgba(0, 245, 255, 0.25);
+    font-size: 0.82rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    color: var(--neon-cyan);
+  }
+
+  .exp-task-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .exp-task-list li {
+    position: relative;
+    padding-left: 1.4rem;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+  }
+
+  .exp-task-list li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--neon-cyan);
+    font-weight: 700;
+  }
+
+  .exp-result-box {
+    padding: 0.75rem 1rem;
+    background: rgba(0, 245, 255, 0.05);
+    border-left: 3px solid var(--neon-cyan);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    margin-bottom: 1.25rem;
+  }
+
+  .exp-tech-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+</style>

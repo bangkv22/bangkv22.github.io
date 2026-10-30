@@ -1,0 +1,70 @@
+---
+// PrismCard.astro
+interface Props {
+  className?: string;
+  glowColor?: 'cyan' | 'purple' | 'coral';
+  interactive?: boolean;
+}
+
+const { className = '', glowColor = 'cyan', interactive = true } = Astro.props;
+---
+
+<div class={`glass-panel prism-card-component glow-${glowColor} ${interactive ? 'interactive' : ''} ${className}`}>
+  <div class="prism-shine"></div>
+  <slot />
+</div>
+
+<style>
+  .prism-card-component {
+    position: relative;
+    overflow: hidden;
+    padding: 1.75rem;
+    border-radius: var(--radius-md);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-glass);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+  }
+
+  .glow-cyan:hover {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 245, 255, 0.2);
+  }
+
+  .glow-purple:hover {
+    border-color: var(--prism-purple);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(155, 92, 255, 0.25);
+  }
+
+  .glow-coral:hover {
+    border-color: var(--coral-pink);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 93, 177, 0.25);
+  }
+
+  .interactive:hover {
+    transform: translateY(-4px);
+  }
+
+  .prism-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.08),
+      rgba(0, 245, 255, 0.15),
+      transparent
+    );
+    transform: skewX(-25deg);
+    pointer-events: none;
+    transition: left 0.75s ease;
+  }
+
+  .prism-card-component:hover .prism-shine {
+    left: 140%;
+  }
+</style>

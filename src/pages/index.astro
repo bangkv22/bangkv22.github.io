@@ -1,0 +1,387 @@
+---
+// src/pages/index.astro
+import MainLayout from '../layouts/MainLayout.astro';
+import MermaidScene from '../components/MermaidScene.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import BlogCard from '../components/BlogCard.astro';
+import PrismCard from '../components/PrismCard.astro';
+import { getCollection } from 'astro:content';
+
+// Get latest 3 blog posts (non-draft)
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const latestPosts = allPosts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+// Featured projects list
+const featuredProjects = [
+  {
+    title: 'AQUA PRISM Portfolio',
+    description: 'Nền tảng portfolio cá nhân phong cách thủy cung neon tương lai với kiến trúc Jamstack tĩnh tốc độ cao.',
+    category: 'Frontend',
+    tags: ['Astro', 'TypeScript', 'CSS Glassmorphism', 'SVG Animation'],
+    problem: 'Tạo dấu ấn cá nhân khác biệt so với các mẫu CV lập trình viên thông thường.',
+    role: 'UI/UX Design, Creative Frontend Architecture.',
+    demoUrl: 'https://bangkv22.github.io',
+    githubUrl: 'https://github.com/bangkv22/bangkv22.github.io'
+  },
+  {
+    title: 'Ocean Data Analytics Hub',
+    description: 'Hệ thống quản lý và trực quan hóa dữ liệu đo đạc thủy văn ngầm ứng dụng biểu đồ tương tác.',
+    category: 'Fullstack',
+    tags: ['Node.js', 'Express', 'MySQL', 'Chart.js'],
+    problem: 'Xử lý chuỗi thời gian dữ liệu cảm biến lớn với độ trễ thấp.',
+    role: 'Xây dựng RESTful API và thiết kế lược đồ Database MySQL.',
+    demoUrl: '#',
+    githubUrl: 'https://github.com/bangkv22'
+  },
+  {
+    title: 'Smart Task Management System',
+    description: 'Ứng dụng quản lý tiến độ đồ án nhóm theo mô hình Agile/Kanban cho sinh viên công nghệ thông tin.',
+    category: 'Backend',
+    tags: ['JavaScript', 'PHP / ASP.NET', 'SQL Server'],
+    problem: 'Tối ưu phân bổ công việc và theo dõi hạn nộp đồ án tự động.',
+    role: 'Phát triển module phân quyền xác thực và cơ sở dữ liệu quan hệ.',
+    demoUrl: '#',
+    githubUrl: 'https://github.com/bangkv22'
+  }
+];
+
+const stats = [
+  { value: '3+', label: 'Năm học IT & Lập trình' },
+  { value: '10+', label: 'Dự án & Bài tập lớn' },
+  { value: '15+', label: 'Công nghệ & Công cụ' },
+  { value: '100%', label: 'Đam mê mã nguồn mở' }
+];
+---
+
+<MainLayout title="AQUA PRISM — Neon Ocean Portfolio | Bang K.V.">
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="section-tag">
+          <span>Aqua Prism • Cyberpunk Underwater</span>
+        </div>
+
+        <h1 class="hero-title">
+          Hi, I'm <span class="gradient-text">Bang K.V.</span>
+        </h1>
+
+        <div class="hero-role">
+          <span class="role-badge">IT Student</span>
+          <span class="role-separator">•</span>
+          <span class="role-badge">Web Developer</span>
+          <span class="role-separator">•</span>
+          <span class="role-badge">Creative Problem Solver</span>
+        </div>
+
+        <p class="hero-bio">
+          Sinh viên ngành Công nghệ Thông tin đam mê kiến trúc phần mềm, lập trình web hiện đại và thiết kế trải nghiệm người dùng tương tác. Khám phá đại dương mã nguồn với tinh thần học hỏi không ngừng.
+        </p>
+
+        <div class="hero-actions">
+          <a href="/projects" class="btn btn-primary">
+            <span>Khám phá Dự án</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </a>
+          <a href="/contact" class="btn btn-secondary">
+            <span>Liên hệ công việc</span>
+          </a>
+        </div>
+
+        <!-- Metric counters -->
+        <div class="hero-stats-grid">
+          {stats.map((stat) => (
+            <div class="stat-card">
+              <div class="stat-value">{stat.value}</div>
+              <div class="stat-label">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Hero Visual: Neon Mermaid Scene -->
+      <div class="hero-visual">
+        <MermaidScene />
+      </div>
+    </div>
+
+    <!-- Scroll down indicator -->
+    <a href="#about-preview" class="scroll-down-btn scroll-indicator" aria-label="Cuộn xuống tìm hiểu thêm">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 5v14M19 12l-7 7-7-7"/>
+      </svg>
+    </a>
+  </section>
+
+  <!-- QUICK ABOUT & PHILOSOPHY SECTION -->
+  <section id="about-preview" class="section-block scroll-reveal">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Triết lý lập trình</div>
+        <h2 class="section-title">Lặn sâu vào <span class="gradient-text">Thế giới Thuật toán</span></h2>
+        <p class="section-subtitle">
+          Như những luồng hải lưu ngầm nuôi dưỡng đại dương, việc xây dựng mã nguồn sạch, tối ưu hiệu năng và tư duy logic vững chắc là nền tảng cho mọi sản phẩm công nghệ trường tồn.
+        </p>
+      </div>
+
+      <div class="philosophy-grid">
+        <PrismCard glowColor="cyan">
+          <div class="feature-icon">⚡</div>
+          <h3>Clean Architecture</h3>
+          <p>
+            Mã nguồn được phân tách module rõ ràng, tuân thủ nguyên lý thiết kế, dễ đọc, dễ kiểm thử và sẵn sàng cho việc mở rộng lâu dài.
+          </p>
+        </PrismCard>
+
+        <PrismCard glowColor="purple">
+          <div class="feature-icon">💎</div>
+          <h3>Interactive UX/UI</h3>
+          <p>
+            Giao diện kết hợp tính thẩm mỹ cao cấp với hiệu năng phản hồi mượt mà, hỗ trợ tốt đa thiết bị từ desktop tới smartphone.
+          </p>
+        </PrismCard>
+
+        <PrismCard glowColor="coral">
+          <div class="feature-icon">🌊</div>
+          <h3>Continuous Learning</h3>
+          <p>
+            Chủ động nắm bắt các công nghệ mới, rèn luyện tư duy giải quyết bài toán phức tạp và đóng góp cho cộng đồng mã nguồn mở.
+          </p>
+        </PrismCard>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PROJECTS PREVIEW -->
+  <section class="section-block scroll-reveal">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Dự án tiêu biểu</div>
+        <h2 class="section-title">Các sản phẩm <span class="gradient-text">Nổi bật</span></h2>
+        <p class="section-subtitle">
+          Những công trình mã nguồn tiêu biểu mà mình đã tham gia thiết kế, phát triển và đóng gói triển khai.
+        </p>
+      </div>
+
+      <div class="projects-grid">
+        {featuredProjects.map((p) => (
+          <ProjectCard {...p} />
+        ))}
+      </div>
+
+      <div style="text-align: center; margin-top: 3rem;">
+        <a href="/projects" class="btn btn-secondary">
+          <span>Xem tất cả dự án & Bộ lọc</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LATEST ARTICLES PREVIEW -->
+  <section class="section-block scroll-reveal">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Góc chia sẻ kiến thức</div>
+        <h2 class="section-title">Bài viết <span class="gradient-text">Mới nhất</span></h2>
+        <p class="section-subtitle">
+          Chia sẻ hành trình tự học, bài học thực tế từ các đồ án đại học và những mẹo lập trình hữu ích.
+        </p>
+      </div>
+
+      <div class="blog-grid">
+        {latestPosts.map((post) => (
+          <BlogCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            category={post.data.category}
+            tags={post.data.tags}
+            slug={post.id}
+            cover={post.data.cover}
+          />
+        ))}
+      </div>
+
+      <div style="text-align: center; margin-top: 3rem;">
+        <a href="/blog" class="btn btn-secondary">
+          <span>Đến chuyên trang Blog & Tìm kiếm</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .hero-section {
+    position: relative;
+    min-height: calc(100vh - var(--nav-height));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 0 5rem;
+  }
+
+  .hero-container {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 6vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-role {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .role-badge {
+    color: var(--neon-cyan);
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+  }
+
+  .role-separator {
+    color: var(--prism-purple);
+  }
+
+  .hero-bio {
+    font-size: 1.12rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    max-width: 580px;
+    margin-bottom: 2.25rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .hero-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 245, 255, 0.12);
+  }
+
+  .stat-card {
+    text-align: left;
+  }
+
+  .stat-value {
+    font-family: var(--font-sans);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--neon-cyan);
+    line-height: 1.1;
+    margin-bottom: 0.25rem;
+    text-shadow: 0 0 12px rgba(0, 245, 255, 0.4);
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.35;
+  }
+
+  .hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .scroll-down-btn {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--neon-cyan);
+    opacity: 0.7;
+    transition: opacity 0.25s ease;
+  }
+
+  .scroll-down-btn:hover {
+    opacity: 1;
+  }
+
+  .section-block {
+    padding: 5rem 0;
+  }
+
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .feature-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  @media (max-width: 1024px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .hero-bio {
+      margin: 0 auto 2.25rem;
+    }
+    .hero-role {
+      justify-content: center;
+    }
+    .hero-actions {
+      justify-content: center;
+    }
+    .hero-stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    .stat-card {
+      text-align: center;
+    }
+    .philosophy-grid,
+    .projects-grid,
+    .blog-grid {
+      grid-template-columns: 1fr;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+  }
+</style>

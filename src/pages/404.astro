@@ -1,0 +1,94 @@
+---
+// src/pages/404.astro
+import MainLayout from '../layouts/MainLayout.astro';
+import PrismCard from '../components/PrismCard.astro';
+---
+
+<MainLayout 
+  title="404 — Lạc vào Vùng Biển Sâu | AQUA PRISM"
+  description="Trang bạn tìm kiếm hiện không tồn tại hoặc đã bị cuốn trôi theo dòng hải lưu ngầm."
+>
+  <div class="container not-found-wrapper">
+    <PrismCard glowColor="purple" className="not-found-card">
+      <div class="abyss-illustration">
+        <svg viewBox="0 0 200 160" width="160" height="120">
+          <ellipse cx="100" cy="80" rx="70" ry="30" stroke="#00f5ff" stroke-width="2" fill="none" opacity="0.3" stroke-dasharray="4 4" />
+          <path d="M70,80 Q100,50 130,80 Q100,110 70,80" fill="rgba(155, 92, 255, 0.2)" stroke="#9b5cff" stroke-width="2" />
+          <circle cx="100" cy="80" r="10" fill="#00f5ff" filter="drop-shadow(0 0 10px #00f5ff)" />
+          <!-- Bubbles -->
+          <circle cx="60" cy="40" r="4" fill="#20e3d2" opacity="0.6" />
+          <circle cx="140" cy="35" r="5" fill="#ff5db1" opacity="0.6" />
+        </svg>
+      </div>
+
+      <div class="error-code">404</div>
+      <h1 class="error-title">Vùng Biển Chưa Được Khám Phá</h1>
+      <p class="error-desc">
+        Tọa độ trang bạn đang tìm kiếm dường như không tồn tại hoặc đã trôi dạt vào rãnh đại dương sâu thẳm. Đừng lo lắng, hãy quay lại luồng hải lưu chính!
+      </p>
+
+      <div class="error-actions">
+        <a href="/" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span>Trở về Trang chủ</span>
+        </a>
+        <a href="/projects" class="btn btn-secondary">
+          <span>Xem các Dự án khác</span>
+        </a>
+      </div>
+    </PrismCard>
+  </div>
+</MainLayout>
+
+<style>
+  .not-found-wrapper {
+    min-height: calc(85vh - var(--nav-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+  }
+
+  .not-found-card {
+    text-align: center;
+    max-width: 620px;
+    padding: 3.5rem 2.5rem;
+  }
+
+  .abyss-illustration {
+    margin-bottom: 1.5rem;
+  }
+
+  .error-code {
+    font-size: clamp(4.5rem, 10vw, 7rem);
+    font-weight: 800;
+    line-height: 1;
+    background: var(--prism-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+
+  .error-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+  }
+
+  .error-desc {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2.25rem;
+  }
+
+  .error-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+</style>

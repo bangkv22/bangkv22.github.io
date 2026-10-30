@@ -1,0 +1,202 @@
+---
+// src/pages/certificates.astro
+import MainLayout from '../layouts/MainLayout.astro';
+import PrismCard from '../components/PrismCard.astro';
+
+const certificates = [
+  {
+    title: 'Web Development Fundamentals',
+    issuer: 'Coursera / Meta / FreeCodeCamp',
+    date: '2024',
+    category: 'Web Development',
+    status: 'Đã hoàn thành',
+    credentialUrl: '#',
+    description: 'Nắm vững kiến trúc giao diện người dùng, lập trình JavaScript hướng sự kiện, semantic HTML5 và CSS responsive.'
+  },
+  {
+    title: 'Relational Database Design & SQL Essentials',
+    issuer: 'Cơ sở đào tạo Học viện Công nghệ',
+    date: '2024',
+    category: 'Database',
+    status: 'Đã hoàn thành',
+    credentialUrl: '#',
+    description: 'Thiết kế lược đồ quan hệ, chuẩn hóa dữ liệu 3NF, phân tích chỉ mục và viết truy vấn lồng phức tạp.'
+  },
+  {
+    title: 'Version Control with Git and GitHub',
+    issuer: 'Mã nguồn mở / GitHub Education',
+    date: '2023',
+    category: 'DevOps & Tools',
+    status: 'Đã hoàn thành',
+    credentialUrl: '#',
+    description: 'Làm chủ quy trình phân nhánh nhánh, xử lý xung đột merge conflict và tích hợp tự động hóa qua GitHub Actions.'
+  },
+  {
+    title: 'Chứng chỉ Chuyên sâu Cloud & Backend (Đang theo học)',
+    issuer: 'Chương trình đào tạo công nghệ 2025-2026',
+    date: '2026',
+    category: 'Cloud / Architecture',
+    status: 'Đang cập nhật',
+    credentialUrl: '#',
+    description: 'Đang trong quá trình hoàn thiện các module về containerization (Docker) và xây dựng microservices.'
+  }
+];
+
+const achievements = [
+  {
+    title: 'Học bổng Khuyến khích Học tập Ngành CNTT',
+    org: 'Khoa Công nghệ Thông tin',
+    year: '2024',
+    desc: 'Đạt thành tích học tập xuất sắc trong kỳ học chuyên ngành với điểm số đồ án cao.'
+  },
+  {
+    title: 'Giải thưởng / Tham gia Cuộc thi Lập trình Sinh viên (Hackathon)',
+    org: 'Câu lạc bộ Tin học & Lập trình',
+    year: '2024',
+    desc: 'Tham gia phát triển giải pháp phần mềm nhóm trong thời gian 24 giờ với đề tài tối ưu hóa dữ liệu số.'
+  }
+];
+---
+
+<MainLayout 
+  title="Chứng chỉ & Thành tựu — AQUA PRISM Portfolio"
+  description="Danh sách các chứng chỉ học tập, khóa huấn luyện chuyên môn và giải thưởng học thuật của Bang K.V."
+>
+  <div class="container" style="padding-top: 3.5rem; padding-bottom: 5rem;">
+    <div class="section-header">
+      <div class="section-tag">Thành tựu • Certificates & Honors</div>
+      <h1 class="section-title">Chứng chỉ & <span class="gradient-text">Chứng nhận Chuyên môn</span></h1>
+      <p class="section-subtitle">
+        Minh chứng cho sự nỗ lực học tập liên tục, tinh thần cầu tiến và không ngừng hoàn thiện bản thân trong môi trường học thuật.
+      </p>
+    </div>
+
+    <!-- Honest Information Note -->
+    <div class="glass-panel" style="padding: 1rem 1.5rem; margin-bottom: 3.5rem; border-color: rgba(155, 92, 255, 0.25); display: flex; align-items: center; gap: 1rem;">
+      <span style="font-size: 1.5rem;">🔒</span>
+      <p style="margin: 0; font-size: 0.88rem; color: var(--text-muted);">
+        <strong style="color: var(--neon-cyan);">Cam kết trung thực:</strong> Toàn bộ thông tin được ghi nhận dựa trên quá trình học tập thực tế. Những chứng chỉ đang học được gắn cờ rõ ràng <span style="color: var(--coral-pink);">“Đang cập nhật”</span>.
+      </p>
+    </div>
+
+    <!-- Certificates Grid -->
+    <div class="certs-grid">
+      {certificates.map((cert, idx) => (
+        <PrismCard glowColor={cert.status === 'Đang cập nhật' ? 'coral' : idx % 2 === 0 ? 'cyan' : 'purple'}>
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+            <span class="badge">{cert.category}</span>
+            <span class={`status-pill ${cert.status === 'Đang cập nhật' ? 'status-updating' : 'status-completed'}`}>
+              {cert.status}
+            </span>
+          </div>
+
+          <h2 style="font-size: 1.25rem; margin-bottom: 0.4rem; color: var(--text-main); line-height: 1.35;">
+            {cert.title}
+          </h2>
+
+          <div style="font-size: 0.88rem; color: var(--neon-cyan); margin-bottom: 0.8rem; font-weight: 500;">
+            Đơn vị cấp: {cert.issuer} • Năm {cert.date}
+          </div>
+
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; flex-grow: 1;">
+            {cert.description}
+          </p>
+
+          <div style="padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+            {cert.status === 'Đã hoàn thành' ? (
+              <a href={cert.credentialUrl} class="cert-verify-link">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                </svg>
+                <span>Xác minh chứng chỉ</span>
+              </a>
+            ) : (
+              <span style="font-size: 0.82rem; color: var(--text-dim); font-style: italic;">
+                Dữ liệu sẽ được cập nhật sau khi hoàn thành khóa thi
+              </span>
+            )}
+          </div>
+        </PrismCard>
+      ))}
+    </div>
+
+    <!-- Academic Honors & Activities -->
+    <div style="margin-top: 5rem;">
+      <div class="section-header">
+        <div class="section-tag">Thành tích & Hoạt động</div>
+        <h2 class="section-title">Ghi nhận <span class="gradient-text">Học thuật</span></h2>
+      </div>
+
+      <div class="achievements-grid">
+        {achievements.map((item) => (
+          <div class="glass-panel" style="padding: 1.75rem; border-color: rgba(0, 245, 255, 0.2);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.6rem;">
+              <h3 style="font-size: 1.15rem; color: var(--text-main);">{item.title}</h3>
+              <span class="badge badge-purple">{item.year}</span>
+            </div>
+            <div style="font-size: 0.88rem; color: var(--neon-cyan); margin-bottom: 0.75rem;">
+              {item.org}
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0;">
+              {item.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</MainLayout>
+
+<style>
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .status-pill {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.65rem;
+    border-radius: var(--radius-full);
+  }
+
+  .status-completed {
+    background: rgba(0, 245, 255, 0.12);
+    color: var(--neon-cyan);
+    border: 1px solid rgba(0, 245, 255, 0.25);
+  }
+
+  .status-updating {
+    background: rgba(255, 93, 177, 0.12);
+    color: var(--coral-pink);
+    border: 1px solid rgba(255, 93, 177, 0.25);
+  }
+
+  .cert-verify-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--neon-cyan);
+  }
+
+  .cert-verify-link:hover {
+    color: var(--neon-aqua);
+    text-shadow: 0 0 6px var(--neon-cyan);
+  }
+
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  @media (max-width: 850px) {
+    .certs-grid, .achievements-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

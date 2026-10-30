@@ -1,0 +1,122 @@
+---
+// Navbar.astro
+const pathname = new URL(Astro.request.url).pathname;
+// Remove trailing slash for comparison
+const currentPath = pathname.replace(/\/$/, '') || '/';
+
+const navItems = [
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Skills', href: '/skills' },
+  { name: 'Projects', href: '/projects' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Certificates', href: '/certificates' },
+  { name: 'Experience', href: '/experience' },
+  { name: 'Contact', href: '/contact' },
+];
+---
+
+<header class="navbar" id="siteNavbar">
+  <div class="container nav-container">
+    <a href="/" class="nav-logo" aria-label="AQUA PRISM Home">
+      <svg class="logo-prism-gem" viewBox="0 0 40 40" fill="none">
+        <polygon points="20,4 36,16 20,36 4,16" stroke="url(#logoGrad)" stroke-width="2.5" fill="rgba(0, 245, 255, 0.15)" />
+        <polygon points="20,10 30,18 20,30 10,18" fill="url(#logoGrad)" opacity="0.6" />
+        <defs>
+          <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#00F5FF" />
+            <stop offset="0.5" stop-color="#9B5CFF" />
+            <stop offset="1" stop-color="#FF5DB1" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <span>AQUA<span class="gradient-text">PRISM</span></span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="nav-links" aria-label="Main Navigation">
+      {navItems.map((item) => {
+        const isActive = item.href === '/' ? currentPath === '/' : currentPath.startsWith(item.href);
+        return (
+          <a 
+            href={item.href} 
+            class={`nav-link ${isActive ? 'active' : ''}`}
+            aria-current={isActive ? 'page' : undefined}
+          >
+            {item.name}
+          </a>
+        );
+      })}
+    </nav>
+
+    <!-- Desktop CTA -->
+    <div class="nav-actions-desktop">
+      <a href="/contact" class="btn btn-primary nav-cta">
+        <span>Get in Touch</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Mobile Menu Toggle Button -->
+    <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="menuIcon">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Dropdown Navigation -->
+  <div class="mobile-menu" id="mobileMenu">
+    {navItems.map((item) => {
+      const isActive = item.href === '/' ? currentPath === '/' : currentPath.startsWith(item.href);
+      return (
+        <a 
+          href={item.href} 
+          class={`nav-link ${isActive ? 'active' : ''}`}
+        >
+          {item.name}
+        </a>
+      );
+    })}
+    <div style="margin-top: 1rem;">
+      <a href="/contact" class="btn btn-primary" style="width: 100%;">
+        Get in Touch
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Navbar scroll background change
+  const navbar = document.getElementById('siteNavbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) {
+      navbar?.classList.add('scrolled');
+    } else {
+      navbar?.classList.remove('scrolled');
+    }
+  });
+
+  // Mobile Menu Toggle
+  const toggleBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  toggleBtn?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.toggle('open');
+    toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  // Close mobile menu when clicking outside or on a link
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (!toggleBtn?.contains(target) && !mobileMenu?.contains(target)) {
+      mobileMenu?.classList.remove('open');
+      toggleBtn?.setAttribute('aria-expanded', 'false');
+    }
+  });
+</script>

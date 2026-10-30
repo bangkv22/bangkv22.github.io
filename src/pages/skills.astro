@@ -1,0 +1,177 @@
+---
+// src/pages/skills.astro
+import MainLayout from '../layouts/MainLayout.astro';
+import PrismCard from '../components/PrismCard.astro';
+
+const skillCategories = [
+  {
+    name: 'Frontend Development',
+    icon: '⚡',
+    description: 'Thiết kế giao diện người dùng tương tác, tối ưu trải nghiệm và bố cục tương thích đa màn hình.',
+    skills: [
+      { name: 'HTML5 & Semantic Web', level: 'Thành thạo', percent: 90 },
+      { name: 'CSS3 / SCSS / Glassmorphism', level: 'Thành thạo', percent: 88 },
+      { name: 'JavaScript (ES6+) & DOM', level: 'Khá tốt', percent: 82 },
+      { name: 'Astro Jamstack', level: 'Khá tốt', percent: 85 },
+      { name: 'Bootstrap & Tailwind CSS', level: 'Khá tốt', percent: 80 },
+      { name: 'React (Hooks & Component)', level: 'Đang phát triển', percent: 70 }
+    ]
+  },
+  {
+    name: 'Backend & APIs',
+    icon: '🔧',
+    description: 'Xây dựng logic nghiệp vụ máy chủ, xử lý luồng dữ liệu bảo mật và cung cấp dịch vụ RESTful.',
+    skills: [
+      { name: 'Node.js & Express', level: 'Khá tốt', percent: 75 },
+      { name: 'PHP Cơ bản & Nâng cao', level: 'Khá tốt', percent: 72 },
+      { name: 'RESTful API Architecture', level: 'Khá tốt', percent: 78 },
+      { name: 'Authentication (JWT / Session)', level: 'Khá tốt', percent: 70 },
+      { name: 'C# / ASP.NET Core', level: 'Đang học hỏi', percent: 65 }
+    ]
+  },
+  {
+    name: 'Database Management',
+    icon: '🗄️',
+    description: 'Mô hình hóa dữ liệu, thiết kế lược đồ ERD, tối ưu câu truy vấn và toàn vẹn giao dịch.',
+    skills: [
+      { name: 'MySQL / MariaDB', level: 'Khá tốt', percent: 80 },
+      { name: 'Microsoft SQL Server', level: 'Khá tốt', percent: 78 },
+      { name: 'Thiết kế ERD & Chuẩn hóa dữ liệu', level: 'Khá tốt', percent: 82 },
+      { name: 'Truy vấn SQL phức tạp & Triggers', level: 'Đang phát triển', percent: 70 }
+    ]
+  },
+  {
+    name: 'Programming Fundamentals',
+    icon: '💻',
+    description: 'Nền tảng thuật toán, tư duy giải quyết vấn đề và lập trình hướng đối tượng (OOP).',
+    skills: [
+      { name: 'C++ & Cấu trúc dữ liệu', level: 'Vững vàng', percent: 85 },
+      { name: 'Java & OOP Principles', level: 'Khá tốt', percent: 75 },
+      { name: 'C# Programming', level: 'Khá tốt', percent: 70 },
+      { name: 'Thuật toán tìm kiếm & sắp xếp', level: 'Khá tốt', percent: 80 }
+    ]
+  },
+  {
+    name: 'Tools & DevOps',
+    icon: '🛠️',
+    description: 'Bộ công cụ phát triển phần mềm, quản lý phiên bản và tự động hóa quy trình làm việc.',
+    skills: [
+      { name: 'Git & GitHub Collaboration', level: 'Thành thạo', percent: 85 },
+      { name: 'VS Code & Web Tools', level: 'Thành thạo', percent: 90 },
+      { name: 'GitHub Actions (CI/CD Pages)', level: 'Khá tốt', percent: 75 },
+      { name: 'Postman API Testing', level: 'Khá tốt', percent: 80 },
+      { name: 'Figma UI Design Basics', level: 'Cơ bản', percent: 65 }
+    ]
+  },
+  {
+    name: 'Kỹ năng mềm (Soft Skills)',
+    icon: '🤝',
+    description: 'Kỹ năng tương tác, phối hợp đội nhóm và tổ chức công việc chuyên nghiệp.',
+    skills: [
+      { name: 'Làm việc nhóm (Teamwork)', level: 'Rất tích cực', percent: 88 },
+      { name: 'Tư duy phản biện & Giải quyết lỗi', level: 'Tốt', percent: 85 },
+      { name: 'Quản lý thời gian & Tiến độ đồ án', level: 'Tốt', percent: 82 },
+      { name: 'Giao tiếp & Thuyết trình kỹ thuật', level: 'Khá tốt', percent: 78 }
+    ]
+  }
+];
+---
+
+<MainLayout 
+  title="Kỹ năng chuyên môn — AQUA PRISM Portfolio"
+  description="Hệ thống kỹ năng lập trình Frontend, Backend, Database, Ngôn ngữ cốt lõi và Công cụ làm việc của Bang K.V."
+>
+  <div class="container" style="padding-top: 3.5rem; padding-bottom: 5rem;">
+    <div class="section-header">
+      <div class="section-tag">Năng lực Kỹ thuật • Skills Spectrum</div>
+      <h1 class="section-title">Quang phổ Kỹ năng <span class="gradient-text">Lập trình</span></h1>
+      <p class="section-subtitle">
+        Tổng hợp các công nghệ đã được rèn luyện qua các kỳ học tại đại học, đồ án môn học và các dự án thực hành cá nhân.
+      </p>
+    </div>
+
+    <!-- Honest disclaimer card -->
+    <div class="glass-panel" style="padding: 1rem 1.5rem; margin-bottom: 3rem; border-color: rgba(0, 245, 255, 0.25); display: flex; align-items: center; gap: 1rem;">
+      <span style="font-size: 1.5rem;">💡</span>
+      <p style="margin: 0; font-size: 0.88rem; color: var(--text-muted);">
+        <strong style="color: var(--neon-cyan);">Lưu ý:</strong> Mức độ phần trăm thể hiện mức độ tự tin và thời gian thực hành cá nhân với công nghệ, không mang tính khẳng định chuyên gia tuyệt đối. Mục tiêu hàng đầu là luôn học hỏi và thích ứng nhanh.
+      </p>
+    </div>
+
+    <!-- Skills Grid by Categories -->
+    <div class="skills-categories-grid">
+      {skillCategories.map((cat, idx) => (
+        <PrismCard glowColor={idx % 3 === 0 ? 'cyan' : idx % 3 === 1 ? 'purple' : 'coral'}>
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+            <span style="font-size: 1.6rem;">{cat.icon}</span>
+            <h2 style="font-size: 1.35rem; color: var(--text-main);">{cat.name}</h2>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+            {cat.description}
+          </p>
+
+          <div class="skills-list">
+            {cat.skills.map((skill) => (
+              <div class="skill-row">
+                <div class="skill-info">
+                  <span class="skill-title">{skill.name}</span>
+                  <span class="skill-badge-level">{skill.level}</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" style={`width: ${skill.percent}%;`}></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </PrismCard>
+      ))}
+    </div>
+  </div>
+</MainLayout>
+
+<style>
+  .skills-categories-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+  }
+
+  .skill-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .skill-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+  }
+
+  .skill-title {
+    font-weight: 500;
+    color: var(--text-main);
+  }
+
+  .skill-badge-level {
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    color: var(--neon-cyan);
+    background: rgba(0, 245, 255, 0.08);
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 850px) {
+    .skills-categories-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

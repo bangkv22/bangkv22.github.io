@@ -1,0 +1,186 @@
+---
+// MermaidScene.astro - Cyberpunk Neon Mermaid Illustration & Ambient Glow
+---
+
+<div class="mermaid-container" aria-label="AQUA PRISM Guardian Mermaid">
+  <div class="mermaid-halo"></div>
+  <svg viewBox="0 0 400 460" class="mermaid-svg" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <!-- Gradients -->
+      <linearGradient id="mTailGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#00f5ff" />
+        <stop offset="45%" stop-color="#20e3d2" />
+        <stop offset="80%" stop-color="#9b5cff" />
+        <stop offset="100%" stop-color="#ff5db1" />
+      </linearGradient>
+
+      <linearGradient id="mHairGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#00f5ff" />
+        <stop offset="50%" stop-color="#9b5cff" />
+        <stop offset="100%" stop-color="#ff5db1" />
+      </linearGradient>
+
+      <linearGradient id="mBodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#eafbff" />
+        <stop offset="100%" stop-color="#9ab8c8" />
+      </linearGradient>
+
+      <radialGradient id="mPrismGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffffff" />
+        <stop offset="30%" stop-color="#00f5ff" />
+        <stop offset="70%" stop-color="#9b5cff" />
+        <stop offset="100%" stop-color="transparent" />
+      </radialGradient>
+
+      <filter id="neonGlowFilter" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="6" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+
+    <!-- Floating Background Particles -->
+    <g class="mermaid-particles" opacity="0.6">
+      <circle cx="120" cy="80" r="3" fill="#00f5ff" />
+      <circle cx="280" cy="110" r="4" fill="#ff5db1" />
+      <circle cx="90" cy="220" r="2.5" fill="#20e3d2" />
+      <circle cx="310" cy="290" r="3.5" fill="#9b5cff" />
+      <circle cx="140" cy="380" r="2" fill="#00f5ff" />
+    </g>
+
+    <!-- Floating Hair (Back Flowing Streams) -->
+    <g class="mermaid-hair-back">
+      <path d="M190,130 C150,110 110,160 130,220 C145,260 115,290 95,330 C85,350 70,380 90,410 C100,370 125,340 145,290 C165,240 150,190 190,150 Z" 
+            fill="url(#mHairGrad)" opacity="0.75" />
+      <path d="M210,135 C240,110 275,150 260,210 C245,260 270,300 280,340 C265,310 240,270 235,220 C230,170 220,150 210,135 Z" 
+            fill="url(#mHairGrad)" opacity="0.6" />
+    </g>
+
+    <!-- Tail Structure (Upper Tail & Flowing Fin) -->
+    <g class="mermaid-tail-group">
+      <!-- Upper Torso to Tail Transition -->
+      <path d="M188,245 C185,280 192,320 205,350 C218,380 230,405 240,430 C220,415 195,385 180,340 C170,295 178,255 188,245 Z" 
+            fill="url(#mTailGrad)" filter="url(#neonGlowFilter)" />
+
+      <!-- Bioluminescent Scales Pattern Lines -->
+      <path d="M184,270 Q192,275 198,270" stroke="#00f5ff" stroke-width="1.5" fill="none" opacity="0.8" />
+      <path d="M182,290 Q195,296 202,290" stroke="#20e3d2" stroke-width="1.5" fill="none" opacity="0.8" />
+      <path d="M183,315 Q198,322 208,315" stroke="#9b5cff" stroke-width="1.5" fill="none" opacity="0.8" />
+      <path d="M190,340 Q205,348 216,340" stroke="#ff5db1" stroke-width="1.5" fill="none" opacity="0.8" />
+
+      <!-- Massive Animated Fluke / Mermaid Tail Fin -->
+      <g class="mermaid-tail-fin">
+        <path d="M240,430 C255,445 285,455 315,445 C295,435 275,415 258,395 C250,410 245,422 240,430 Z" 
+              fill="url(#mTailGrad)" opacity="0.9" />
+        <path d="M240,430 C245,450 260,465 275,468 C265,450 250,435 240,430 Z" 
+              fill="#00f5ff" opacity="0.8" />
+        <path d="M240,430 C225,448 200,458 175,450 C195,438 215,425 230,410 C235,420 238,426 240,430 Z" 
+              fill="url(#mTailGrad)" opacity="0.9" />
+      </g>
+    </g>
+
+    <!-- Torso and Body -->
+    <g class="mermaid-torso">
+      <!-- Silhouette Curves -->
+      <path d="M192,175 C198,190 200,208 198,225 C197,236 193,248 188,255 C182,246 180,234 182,220 C184,204 186,188 192,175 Z" 
+            fill="url(#mBodyGrad)" />
+      <!-- Bioluminescent Cyber-Top / Coral Armor -->
+      <path d="M184,200 Q192,206 200,200 Q204,212 195,216 Q185,212 184,200 Z" 
+            fill="#031321" stroke="#00f5ff" stroke-width="1.5" />
+      <circle cx="192" cy="207" r="2.5" fill="#ff5db1" filter="drop-shadow(0 0 4px #ff5db1)" />
+
+      <!-- Slender Arms Holding The Prism Gem -->
+      <!-- Left Arm -->
+      <path d="M184,188 C172,198 160,215 168,230 C175,242 195,240 205,232" 
+            stroke="url(#mBodyGrad)" stroke-width="4.5" stroke-linecap="round" fill="none" />
+      <!-- Right Arm -->
+      <path d="M198,188 C210,198 222,215 218,228 C214,236 205,236 200,234" 
+            stroke="url(#mBodyGrad)" stroke-width="4" stroke-linecap="round" fill="none" />
+    </g>
+
+    <!-- Head and Crown -->
+    <g class="mermaid-head">
+      <!-- Head / Face Silhouette -->
+      <ellipse cx="194" cy="148" rx="11" ry="14" fill="url(#mBodyGrad)" />
+      <!-- Gentle Neck -->
+      <path d="M190,160 L190,175 L198,175 L198,160 Z" fill="url(#mBodyGrad)" />
+      <!-- Neon Aquatic Crown / Tiara -->
+      <path d="M185,142 L189,134 L194,139 L199,132 L203,142 Z" fill="#00f5ff" filter="drop-shadow(0 0 5px #00f5ff)" />
+      <!-- Closed Calm Eyes -->
+      <path d="M190,148 Q192,150 194,148" stroke="#031321" stroke-width="1" fill="none" />
+      <path d="M196,148 Q198,150 200,148" stroke="#031321" stroke-width="1" fill="none" />
+      <!-- Soft lips -->
+      <path d="M193,154 Q195,155 197,154" stroke="#ff5db1" stroke-width="1" fill="none" />
+    </g>
+
+    <!-- Floating Front Hair Strands -->
+    <path d="M187,144 C180,160 178,185 182,210 C175,190 176,170 184,152 Z" fill="url(#mHairGrad)" />
+
+    <!-- THE AQUA PRISM: Floating Central Crystal with Multi-faceted Neon Glow -->
+    <g class="aqua-prism-core" transform="translate(198, 230)">
+      <!-- Outer Pulsing Glow -->
+      <circle cx="0" cy="0" r="28" fill="url(#mPrismGlow)" opacity="0.75" />
+      
+      <!-- Prism Octahedron Vector -->
+      <!-- Top Pyramid -->
+      <polygon points="0,-18 14,-2 0,4" fill="#00f5ff" opacity="0.85" stroke="#ffffff" stroke-width="0.8" />
+      <polygon points="0,-18 -14,-2 0,4" fill="#20e3d2" opacity="0.75" stroke="#ffffff" stroke-width="0.8" />
+      <!-- Bottom Pyramid -->
+      <polygon points="0,18 14,-2 0,4" fill="#9b5cff" opacity="0.9" stroke="#ffffff" stroke-width="0.8" />
+      <polygon points="0,18 -14,-2 0,4" fill="#ff5db1" opacity="0.85" stroke="#ffffff" stroke-width="0.8" />
+      <!-- Sparkle Highlights -->
+      <line x1="0" y1="-22" x2="0" y2="22" stroke="#ffffff" stroke-width="1.2" opacity="0.9" />
+      <line x1="-22" y1="0" x2="22" y2="0" stroke="#ffffff" stroke-width="1.2" opacity="0.9" />
+    </g>
+  </svg>
+</div>
+
+<style>
+  .mermaid-container {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .mermaid-halo {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 245, 255, 0.22) 0%, rgba(155, 92, 255, 0.15) 50%, transparent 75%);
+    filter: blur(28px);
+    z-index: 0;
+  }
+
+  .mermaid-svg {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 30px rgba(0, 245, 255, 0.35));
+    animation: mermaid-float 7s ease-in-out infinite;
+  }
+
+  .mermaid-tail-fin {
+    transform-origin: 240px 430px;
+    animation: mermaid-tail-sway 5s ease-in-out infinite;
+  }
+
+  .aqua-prism-core {
+    animation: bioluminescent-pulse 3.5s ease-in-out infinite;
+  }
+
+  @media (max-width: 768px) {
+    .mermaid-container {
+      max-width: 280px;
+    }
+  }
+</style>

@@ -1,0 +1,107 @@
+---
+// MainLayout.astro
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import FishBackground from '../components/FishBackground.astro';
+import '../styles/global.css';
+import '../styles/animations.css';
+import '../styles/components.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'AQUA PRISM — Neon Ocean Portfolio | IT Developer',
+  description = 'Website portfolio cá nhân mang phong cách thủy cung neon tương lai. Giới thiệu kỹ năng, dự án web, thuật toán và bài viết kỹ thuật ngành Công nghệ Thông tin.',
+  ogImage = '/images/og-aquaprism.png',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://bangkv22.github.io');
+---
+
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Canonical SEO -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content="Bang K.V. (AQUA PRISM)" />
+    <meta name="theme-color" content="#031321" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
+
+    <!-- Preconnect Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <!-- Background Interactive Ocean Scene -->
+    <FishBackground />
+
+    <!-- Navigation Header -->
+    <Navbar />
+
+    <!-- Page Content -->
+    <main id="main-content" style="position: relative; z-index: 10; min-height: 80vh; padding-top: var(--nav-height);">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <Footer />
+
+    <script>
+      // Intersection Observer for Smooth Scroll Reveal
+      const revealElements = document.querySelectorAll('.scroll-reveal');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach((el) => observer.observe(el));
+      } else {
+        revealElements.forEach((el) => el.classList.add('revealed'));
+      }
+    </script>
+
+    <style is:global>
+      .scroll-reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .scroll-reveal.revealed {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </body>
+</html>

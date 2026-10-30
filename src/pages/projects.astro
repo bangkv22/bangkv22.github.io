@@ -1,0 +1,212 @@
+---
+// src/pages/projects.astro
+import MainLayout from '../layouts/MainLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const projects = [
+  {
+    title: 'AQUA PRISM — Neon Ocean Portfolio',
+    description: 'Trang web portfolio cá nhân mang concept thủy cung số tương lai, kết hợp kiến trúc Astro Jamstack, hiệu ứng lăng kính khúc xạ ánh sáng và quản lý bài viết qua Markdown.',
+    category: 'Frontend',
+    tags: ['Astro', 'TypeScript', 'CSS Animation', 'Glassmorphism'],
+    problem: 'Tạo lập bộ nhận diện cá nhân độc bản, vừa trình diễn tư duy thẩm mỹ cao vừa đảm bảo tốc độ tải trang 100/100 Lighthouse.',
+    role: 'Tác giả chính, thiết kế UI/UX và lập trình toàn bộ hệ thống component.',
+    demoUrl: 'https://bangkv22.github.io',
+    githubUrl: 'https://github.com/bangkv22/bangkv22.github.io'
+  },
+  {
+    title: 'Ocean Data Analytics Hub',
+    description: 'Hệ thống dashboard trực quan hóa các chỉ số môi trường biển, nhiệt độ tầng sâu và cảnh báo thủy văn qua biểu đồ tương tác thời gian thực.',
+    category: 'Fullstack',
+    tags: ['Node.js', 'Express', 'MySQL', 'Chart.js', 'REST API'],
+    problem: 'Tập hợp các luồng dữ liệu thô từ nhiều trạm đo và biểu diễn trực quan để hỗ trợ phân tích xu hướng biến đổi khí hậu.',
+    role: 'Xây dựng RESTful API backend, thiết kế cấu trúc database và tích hợp biểu đồ frontend.',
+    demoUrl: '#',
+    githubUrl: 'https://github.com/bangkv22'
+  },
+  {
+    title: 'Agile Team Task Management System',
+    description: 'Ứng dụng quản trị công việc nhóm sinh viên theo mô hình bảng Kanban, hỗ trợ phân công task, đếm ngược deadline và thông báo tiến độ.',
+    category: 'Backend',
+    tags: ['PHP / C#', 'SQL Server', 'JavaScript', 'MVC'],
+    problem: 'Giải quyết tình trạng trễ deadline và thiếu minh bạch trong phân chia đầu việc tại các bài tập lớn đại học.',
+    role: 'Phát triển tầng dữ liệu (Data Access Layer), quy trình phân quyền RBAC và logic nghiệp vụ.',
+    demoUrl: '#',
+    githubUrl: 'https://github.com/bangkv22'
+  },
+  {
+    title: 'Relational Database Optimization & Store Engine',
+    description: 'Dự án chuẩn hóa cơ sở dữ liệu bán lẻ quy mô 100,000 bản ghi, tối ưu hóa câu lệnh Indexing, Stored Procedures và phòng chống SQL Injection.',
+    category: 'Database',
+    tags: ['SQL Server', 'Database Indexing', 'Stored Procedures', 'Security'],
+    problem: 'Khắc phục tình trạng nghẽn cổ chai khi truy vấn báo cáo doanh số phức tạp với bảng nhiều triệu dòng.',
+    role: 'Tối ưu hóa Execution Plan, tạo Non-clustered Index và viết kịch bản giả lập tải.',
+    demoUrl: '#',
+    githubUrl: 'https://github.com/bangkv22'
+  },
+  {
+    title: 'Algorithm Visualizer Interactive Lab',
+    description: 'Trang web trực quan hóa từng bước thực thi của các thuật toán sắp xếp (Quick Sort, Merge Sort) và tìm đường đi ngắn nhất (Dijkstra, A*).',
+    category: 'Frontend',
+    tags: ['JavaScript', 'HTML5 Canvas', 'Data Structures', 'Algorithms'],
+    problem: 'Giúp sinh viên và người mới học CNTT tiếp cận các cấu trúc giải thuật trừu tượng bằng hình ảnh trực quan sinh động.',
+    role: 'Thuật toán hóa từng frame chuyển động trên Canvas và xây dựng trình điều khiển tốc độ.',
+    demoUrl: '#',
+    githubUrl: 'https://github.com/bangkv22'
+  },
+  {
+    title: 'Automated GitHub Pages CI/CD Boilerplate',
+    description: 'Bộ khung triển khai tự động mã nguồn mở dành cho các lập trình viên muốn deploy website tĩnh với bảo mật thẻ HTTPS và caching tự động.',
+    category: 'Other',
+    tags: ['GitHub Actions', 'YAML', 'Bash Script', 'DevOps'],
+    problem: 'Đơn giản hóa quy trình build và deploy lặp lại của sinh viên khi làm đồ án cá nhân.',
+    role: 'Viết kịch bản tự động hóa CI/CD pipeline và tài liệu hướng dẫn từng bước.',
+    demoUrl: '#',
+    githubUrl: 'https://github.com/bangkv22'
+  }
+];
+
+const categories = ['All', 'Frontend', 'Backend', 'Database', 'Fullstack', 'Other'];
+---
+
+<MainLayout 
+  title="Dự án & Sản phẩm — AQUA PRISM Portfolio"
+  description="Bộ sưu tập các dự án web, hệ thống backend, tối ưu cơ sở dữ liệu và thuật toán thực hành của Bang K.V."
+>
+  <div class="container" style="padding-top: 3.5rem; padding-bottom: 5rem;">
+    <div class="section-header">
+      <div class="section-tag">Công trình Mã nguồn • Project Gallery</div>
+      <h1 class="section-title">Khám phá Các Dự án <span class="gradient-text">Đã Thực hiện</span></h1>
+      <p class="section-subtitle">
+        Mỗi dự án là một cơ hội thử nghiệm giải pháp kỹ thuật mới, giải quyết các bài toán thực tế và nâng cao tư duy kiến trúc hệ thống.
+      </p>
+    </div>
+
+    <!-- Filter Buttons Toolbar -->
+    <div class="filter-toolbar">
+      {categories.map((cat, idx) => (
+        <button 
+          class={`filter-btn ${idx === 0 ? 'active' : ''}`} 
+          data-filter={cat.toLowerCase()}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid" id="projectsContainer">
+      {projects.map((proj) => (
+        <ProjectCard {...proj} />
+      ))}
+    </div>
+
+    <!-- Empty Filter Fallback -->
+    <div id="noProjectsNotice" class="no-projects-box" style="display: none;">
+      <svg viewBox="0 0 100 100" width="60" height="60" fill="none" stroke="currentColor">
+        <circle cx="50" cy="50" r="40" stroke="#00f5ff" stroke-width="2" />
+        <line x1="30" y1="35" x2="40" y2="35" stroke="#9b5cff" stroke-width="3" stroke-linecap="round" />
+        <line x1="60" y1="35" x2="70" y2="35" stroke="#9b5cff" stroke-width="3" stroke-linecap="round" />
+        <path d="M35 68 Q50 55 65 68" stroke="#ff5db1" stroke-width="2" fill="none" />
+      </svg>
+      <h3 style="margin-top: 1rem; color: var(--text-main);">Chưa có dự án trong phân loại này</h3>
+      <p style="font-size: 0.9rem; color: var(--text-muted);">Các dự án mới đang tiếp tục được phát triển và cập nhật.</p>
+    </div>
+  </div>
+</MainLayout>
+
+<style>
+  .filter-toolbar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .filter-btn {
+    padding: 0.55rem 1.4rem;
+    border-radius: var(--radius-full);
+    background: rgba(7, 30, 53, 0.6);
+    border: 1px solid var(--border-glass);
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .filter-btn:hover {
+    color: var(--neon-cyan);
+    border-color: var(--neon-cyan);
+    background: rgba(0, 245, 255, 0.08);
+  }
+
+  .filter-btn.active {
+    background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--prism-purple) 100%);
+    color: #031321;
+    font-weight: 700;
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(0, 245, 255, 0.35);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .no-projects-box {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--bg-surface);
+    border: 1px dashed var(--border-glass);
+    border-radius: var(--radius-md);
+    margin: 2rem auto;
+    max-width: 500px;
+  }
+
+  @media (max-width: 1024px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  // Client-side instant filtering without page reload
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll<HTMLElement>('.project-card');
+  const noProjectsNotice = document.getElementById('noProjectsNotice');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      // Toggle active button state
+      filterBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filterValue = btn.getAttribute('data-filter') || 'all';
+      let visibleCount = 0;
+
+      projectCards.forEach((card) => {
+        const cardCat = card.getAttribute('data-category') || '';
+        if (filterValue === 'all' || cardCat === filterValue) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (noProjectsNotice) {
+        noProjectsNotice.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+    });
+  });
+</script>

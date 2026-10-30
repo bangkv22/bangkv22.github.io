@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+  <defs>
+    <linearGradient id="prismIcoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00F5FF" />
+      <stop offset="50%" stop-color="#9B5CFF" />
+      <stop offset="100%" stop-color="#FF5DB1" />
+    </linearGradient>
+  </defs>
+  <polygon points="20,2 38,15 20,38 2,15" stroke="url(#prismIcoGrad)" stroke-width="2.5" fill="#031321" />
+  <polygon points="20,10 31,18 20,30 9,18" fill="url(#prismIcoGrad)" opacity="0.85" />
+</svg>
